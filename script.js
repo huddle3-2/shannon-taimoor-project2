@@ -19,8 +19,6 @@ pokeApp.fetchData = () => {
           url: item.url,
           name: item.name,
         });
-
-        console.log(pokeApp.pokeCards);
       });
     })
     .then(function () {
@@ -37,7 +35,20 @@ pokeApp.fetchImages = function (pokeCards) {
       .then(function (result) {
         console.log(result.sprites.front_default);
         card.urlImg = result.sprites.front_default;
+      })
+      .then(function () {
+        const backDiv = document.createElement("div");
+
+        backDiv.innerHTML = `<img src=${card.urlImg} alt=${card.name}/>`;
+        pokeApp.ulEl.appendChild(backDiv);
       });
+  });
+};
+
+pokeApp.displayImage = function () {
+  console.log("it runs!");
+  pokeApp.pokeCards.forEach((card) => {
+    // const frontDiv = document.createElement("div");
   });
 };
 

@@ -2,13 +2,13 @@ const pokeApp = {};
 
 pokeApp.liEl = document.createElement("li");
 
-pokeApp.ulEl = document.querySelector("ul");
+pokeApp.ulEl = document.querySelector(".displayPokemon");
 console.log(pokeApp.ulEl);
 
 pokeApp.pokeCards = [];
 
 pokeApp.fetchData = () => {
-  fetch("https://pokeapi.co/api/v2/pokemon?limit=10&offset=0")
+  fetch("https://pokeapi.co/api/v2/pokemon?limit=3&offset=0")
     .then(function (data) {
       return data.json();
     })
@@ -23,6 +23,7 @@ pokeApp.fetchData = () => {
     })
     .then(function () {
       pokeApp.fetchImages(pokeApp.pokeCards);
+      pokeApp.fetchImages(pokeApp.pokeCards);
     });
 };
 
@@ -33,24 +34,32 @@ pokeApp.fetchImages = function (pokeCards) {
         return data.json();
       })
       .then(function (result) {
-        console.log(result.sprites.front_default);
         card.urlImg = result.sprites.front_default;
       })
       .then(function () {
         const backDiv = document.createElement("div");
 
-        backDiv.innerHTML = `<img src=${card.urlImg} alt=${card.name}/>`;
+        backDiv.innerHTML = `<img src=${card.urlImg} alt=${card.name}>`;
         pokeApp.ulEl.appendChild(backDiv);
+
+        backDiv.addEventListener("click", function (e) {
+          console.log(e.target);
+          // console.log(e.target.alt);
+
+          pokeApp.firstChoice = e.target;
+          console.log(pokeApp.firstChoice);
+
+          // only remove if choice matches
+          pokeApp.firstChoice.remove();
+
+          // pokeApp.firstChoice.display = "none";
+          // console.log("clicked");
+        });
       });
   });
 };
 
-pokeApp.displayImage = function () {
-  console.log("it runs!");
-  pokeApp.pokeCards.forEach((card) => {
-    // const frontDiv = document.createElement("div");
-  });
-};
+// pokeApp.setupEventListener = function () {};
 
 pokeApp.init = () => {
   console.log("ready to go!");

@@ -8,7 +8,7 @@ pokeApp.pokeCards = [];
 pokeApp.firstChoiceSelected = false;
 
 pokeApp.fetchData = () => {
-  fetch("https://pokeapi.co/api/v2/pokemon?limit=3&offset=0")
+  fetch("https://pokeapi.co/api/v2/pokemon?limit=5&offset=0")
     .then(function (data) {
       return data.json();
     })

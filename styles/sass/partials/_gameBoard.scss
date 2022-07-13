@@ -1,23 +1,26 @@
 .container{
-    display:flex;
-    flex-direction:column;
+    // display:flex;
+    // // flex-direction:column;
     max-width:1280px;
     width:80%;
     margin:0 auto;
     align-items:center;
 
     .displayPokemon{
+        width:50%;
+        min-width:250px;
+        margin:0 auto;
         border:2px orange solid;
-        display:flex;
-        flex-wrap:wrap;
-        width:80%;
+        display:grid;
+        grid-template-columns: repeat(5, 1fr);
+        grid-template-rows: repeat(2, 1fr);
 
-        div{
-            border:2px red solid;
-            width:calc(100% / 3);
+        img{
+            
+            width:100%;
         }
-
     }
+    
 
 
 }

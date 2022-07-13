@@ -3,9 +3,9 @@ const pokeApp = {};
 pokeApp.liEl = document.createElement("li");
 
 pokeApp.ulEl = document.querySelector(".displayPokemon");
-console.log(pokeApp.ulEl);
 
 pokeApp.pokeCards = [];
+pokeApp.firstChoiceSelected = false;
 
 pokeApp.fetchData = () => {
   fetch("https://pokeapi.co/api/v2/pokemon?limit=3&offset=0")
@@ -43,14 +43,21 @@ pokeApp.fetchImages = function (pokeCards) {
         pokeApp.ulEl.appendChild(backDiv);
 
         backDiv.addEventListener("click", function (e) {
-          console.log(e.target);
           // console.log(e.target.alt);
+          if (!pokeApp.firstChoiceSelected) {
+            pokeApp.firstChoice = e.target;
+            pokeApp.firstChoiceSelected = true;
+          } else {
+            pokeApp.secondChoice = e.target;
+          }
 
-          pokeApp.firstChoice = e.target;
-          console.log(pokeApp.firstChoice);
+          if (pokeApp.firstChoice && pokeApp.firstChoice !== e.target) {
+            pokeApp.checkMatch();
+          } else {
+            console.log("pick another card");
+          }
 
           // only remove if choice matches
-          pokeApp.firstChoice.remove();
 
           // pokeApp.firstChoice.display = "none";
           // console.log("clicked");
@@ -59,6 +66,17 @@ pokeApp.fetchImages = function (pokeCards) {
   });
 };
 
+pokeApp.checkMatch = () => {
+  console.log("checking...");
+  if (pokeApp.firstChoiceSelected) {
+    if (pokeApp.secondChoice.alt === pokeApp.firstChoice.alt) {
+      pokeApp.firstChoice.remove();
+      pokeApp.secondChoice.remove();
+    }
+
+    pokeApp.firstChoiceSelected = false;
+  }
+};
 // pokeApp.setupEventListener = function () {};
 
 pokeApp.init = () => {

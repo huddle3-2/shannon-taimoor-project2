@@ -1,5 +1,10 @@
 const pokeApp = {};
 
+pokeApp.liEl = document.createElement("li");
+
+pokeApp.ulEl = document.querySelector("ul");
+console.log(pokeApp.ulEl);
+
 pokeApp.pokeCards = [];
 
 pokeApp.fetchData = () => {

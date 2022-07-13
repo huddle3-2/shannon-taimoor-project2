@@ -1,0 +1,24 @@
+.container{
+    display:flex;
+    flex-direction:column;
+    max-width:1280px;
+    width:80%;
+    margin:0 auto;
+    align-items:center;
+
+    .displayPokemon{
+        border:2px orange solid;
+        display:flex;
+        flex-wrap:wrap;
+        width:80%;
+
+        div{
+            border:2px red solid;
+            width:calc(100% / 3);
+        }
+
+    }
+
+
+}
+

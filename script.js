@@ -1,7 +1,5 @@
 const pokeApp = {};
 
-pokeApp.liEl = document.createElement("li");
-
 pokeApp.ulEl = document.querySelector(".displayPokemon");
 
 pokeApp.pokeCards = [];
@@ -37,12 +35,19 @@ pokeApp.fetchImages = function (pokeCards) {
         card.urlImg = result.sprites.front_default;
       })
       .then(function () {
+        const newLi = document.createElement("li");
         const backDiv = document.createElement("div");
+        const frontDiv = document.createElement("div");
 
+        frontDiv.classList.add("front");
+        backDiv.classList.add("back");
+
+        frontDiv.innerHTML = `<img src="./assets/back-card.png"/>`;
         backDiv.innerHTML = `<img src=${card.urlImg} alt=${card.name}>`;
-        pokeApp.ulEl.appendChild(backDiv);
+        newLi.append(frontDiv, backDiv);
+        pokeApp.ulEl.appendChild(newLi);
 
-        backDiv.addEventListener("click", function (e) {
+        newLi.addEventListener("click", function (e) {
           // console.log(e.target.alt);
           if (!pokeApp.firstChoiceSelected) {
             pokeApp.firstChoice = e.target;
@@ -67,13 +72,12 @@ pokeApp.fetchImages = function (pokeCards) {
 };
 
 pokeApp.checkMatch = () => {
-  console.log("checking...");
-  if (pokeApp.firstChoiceSelected) {
-    if (pokeApp.secondChoice.alt === pokeApp.firstChoice.alt) {
-      pokeApp.firstChoice.remove();
-      pokeApp.secondChoice.remove();
-    }
-
+  if (
+    pokeApp.firstChoiceSelected &&
+    pokeApp.secondChoice.alt === pokeApp.firstChoice.alt
+  ) {
+    pokeApp.firstChoice.remove();
+    pokeApp.secondChoice.remove();
     pokeApp.firstChoiceSelected = false;
   }
 };

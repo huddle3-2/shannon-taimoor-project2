@@ -49,13 +49,17 @@ pokeApp.fetchImages = function (pokeCards) {
 
         newLi.addEventListener("click", function (e) {
           if (!pokeApp.firstChoiceSelected) {
-            pokeApp.firstChoice = e.target;
+            console.log(e.target.parentNode.nextSibling.firstChild.alt);
+            pokeApp.firstChoice =
+              e.target.parentNode.nextSibling.firstChild.alt;
+            e.target.parentNode.classList.add("hide");
             console.log(e);
             pokeApp.firstChoiceSelected = true;
           } else {
-            pokeApp.secondChoice = e.target;
-            console.log(e.target);
-            e.target.parentNode.className;
+            pokeApp.secondChoice =
+              e.target.parentNode.nextSibling.firstChild.alt;
+
+            e.target.parentNode.classList.add("hide");
           }
 
           if (pokeApp.firstChoice && pokeApp.firstChoice !== e.target) {
@@ -75,14 +79,14 @@ pokeApp.fetchImages = function (pokeCards) {
 // if
 
 pokeApp.checkMatch = () => {
-  if (
-    pokeApp.firstChoiceSelected &&
-    pokeApp.secondChoice.alt === pokeApp.firstChoice.alt
-  ) {
-    pokeApp.firstChoice.remove();
-    pokeApp.secondChoice.remove();
-    pokeApp.firstChoiceSelected = false;
-  }
+  // if (
+  //   pokeApp.firstChoiceSelected &&
+  //   pokeApp.secondChoice.alt === pokeApp.firstChoice.alt
+  // ) {
+  //   pokeApp.firstChoice.remove();
+  //   pokeApp.secondChoice.remove();
+  //   pokeApp.firstChoiceSelected = false;
+  // }
 };
 // pokeApp.setupEventListener = function () {};
 

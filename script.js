@@ -36,33 +36,37 @@ pokeApp.fetchImages = function (pokeCards) {
       })
       .then(function () {
         const newLi = document.createElement("li");
-        const backDiv = document.createElement("div");
-        const frontDiv = document.createElement("div");
+        pokeApp.backDiv = document.createElement("div");
+        pokeApp.frontDiv = document.createElement("div");
 
-        frontDiv.classList.add("front");
-        backDiv.classList.add("back");
+        pokeApp.frontDiv.classList.add("front");
+        pokeApp.backDiv.classList.add("back");
 
-        frontDiv.innerHTML = `<img src="./assets/back-card.png"/>`;
-        backDiv.innerHTML = `<img src=${card.urlImg} alt=${card.name}>`;
-        newLi.append(frontDiv, backDiv);
+        pokeApp.frontDiv.innerHTML = `<img src="./assets/back-card.png" draggable="false"/>`;
+        pokeApp.backDiv.innerHTML = `<img src=${card.urlImg} alt=${card.name}>`;
+        newLi.append(pokeApp.frontDiv, pokeApp.backDiv);
         pokeApp.ulEl.appendChild(newLi);
 
         newLi.addEventListener("click", function (e) {
           if (!pokeApp.firstChoiceSelected) {
             console.log(e.target.parentNode.nextSibling.firstChild.alt);
-            pokeApp.firstChoice =
-              e.target.parentNode.nextSibling.firstChild.alt;
-            e.target.parentNode.classList.add("hide");
-            console.log(e);
+            pokeApp.firstChoice = e.target.parentNode.nextSibling.firstChild;
+
+            pokeApp.cardImage = e.target.parentNode;
+
+            pokeApp.cardImage.classList.add("hide");
+
             pokeApp.firstChoiceSelected = true;
           } else {
-            pokeApp.secondChoice =
-              e.target.parentNode.nextSibling.firstChild.alt;
+            pokeApp.secondChoice = e.target.parentNode.nextSibling.firstChild;
 
-            e.target.parentNode.classList.add("hide");
+            pokeApp.cardImage.classList.add("hide");
           }
 
-          if (pokeApp.firstChoice && pokeApp.firstChoice !== e.target) {
+          if (
+            pokeApp.firstChoice &&
+            pokeApp.firstChoice !== e.target.parentNode.nextSibling.firstChild
+          ) {
             pokeApp.checkMatch();
           } else {
             console.log("pick another card");
@@ -72,30 +76,27 @@ pokeApp.fetchImages = function (pokeCards) {
   });
 };
 
-// PSEUDO
-// user clicks on the card (it will be an img)
-// we have to find the parent class of the img, and find the corresponding sibling,
-// if front card, then display:none or have flip card animation
-// if
-
 pokeApp.checkMatch = () => {
-  // if (
-  //   pokeApp.firstChoiceSelected &&
-  //   pokeApp.secondChoice.alt === pokeApp.firstChoice.alt
-  // ) {
-  //   pokeApp.firstChoice.remove();
-  //   pokeApp.secondChoice.remove();
-  //   pokeApp.firstChoiceSelected = false;
-  // }
+  console.log("heading to check match");
+
+  if (
+    pokeApp.firstChoiceSelected &&
+    pokeApp.secondChoice.alt === pokeApp.firstChoice.alt
+  ) {
+    console.log("it's a match!");
+    pokeApp.frontDiv.remove();
+    pokeApp.backDiv.remove();
+    pokeApp.firstChoiceSelected = false;
+  } else {
+    pokeApp.cardImage.classList.add("show");
+  }
 };
-// pokeApp.setupEventListener = function () {};
 
 pokeApp.init = () => {
   console.log("ready to go!");
   pokeApp.fetchData();
 
   console.log("the results");
-  // console.log(pokeApp.results);
 };
 
 pokeApp.init();

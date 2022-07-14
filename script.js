@@ -108,9 +108,9 @@ pokeApp.handleClick = (e) => {
   } else {
   }
 
-  pokeApp.addClickSetup();
-
+  console.log("first choice");
   console.log(pokeApp.firstChoice);
+  console.log("second choice");
   console.log(pokeApp.secondChoice);
 };
 
@@ -128,6 +128,11 @@ pokeApp.checkMatch = () => {
       pokeApp.counter = 0;
       // reset first choice back to false
       pokeApp.firstChoiceSelected = false;
+      pokeApp.secondChoice = "";
+      console.log("first choice time out");
+      console.log(pokeApp.firstChoice);
+      console.log(pokeApp.secondChoice);
+      pokeApp.addClickSetup();
     }, 2000);
   } else {
     // If value of first and second choice do NOT match, flip the cards back over
@@ -137,6 +142,10 @@ pokeApp.checkMatch = () => {
       pokeApp.counter = 0;
       // reset first choice back to false
       pokeApp.firstChoiceSelected = false;
+      pokeApp.secondChoice = "";
+      console.log(pokeApp.firstChoice);
+      console.log(pokeApp.secondChoice);
+      pokeApp.addClickSetup();
     }, 2000);
   }
 };

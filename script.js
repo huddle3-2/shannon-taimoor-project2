@@ -48,12 +48,14 @@ pokeApp.fetchImages = function (pokeCards) {
         pokeApp.ulEl.appendChild(newLi);
 
         newLi.addEventListener("click", function (e) {
-          // console.log(e.target.alt);
           if (!pokeApp.firstChoiceSelected) {
             pokeApp.firstChoice = e.target;
+            console.log(e);
             pokeApp.firstChoiceSelected = true;
           } else {
             pokeApp.secondChoice = e.target;
+            console.log(e.target);
+            e.target.parentNode.className;
           }
 
           if (pokeApp.firstChoice && pokeApp.firstChoice !== e.target) {
@@ -61,15 +63,16 @@ pokeApp.fetchImages = function (pokeCards) {
           } else {
             console.log("pick another card");
           }
-
-          // only remove if choice matches
-
-          // pokeApp.firstChoice.display = "none";
-          // console.log("clicked");
         });
       });
   });
 };
+
+// PSEUDO
+// user clicks on the card (it will be an img)
+// we have to find the parent class of the img, and find the corresponding sibling,
+// if front card, then display:none or have flip card animation
+// if
 
 pokeApp.checkMatch = () => {
   if (

@@ -7,13 +7,36 @@
           align-items: center;
 }
 .container .displayPokemon {
-  width: 50%;
+  width: 70%;
   min-width: 250px;
+  max-width: 1280px;
   margin: 0 auto;
-  border: 2px orange solid;
   display: grid;
+  gap: 10px;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(2, 1fr);
+  list-style: none;
+  padding: 0;
+}
+.container .displayPokemon li {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.container .displayPokemon .back {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  border: 2px red solid;
+  top: 0;
+}
+.container .displayPokemon .back img {
+  margin-top: 20px;
+}
+.container .displayPokemon .front {
+  position: relative;
+  border: 2px orange solid;
+  z-index: 100;
 }
 .container .displayPokemon img {
   width: 100%;

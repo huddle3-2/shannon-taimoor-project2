@@ -56,7 +56,6 @@ body {
   height: 100%;
   position: absolute;
   top: 0;
-  background-color: white;
 }
 .container .displayPokemon .back:active {
   -webkit-animation: flip 0.5s linear 5s infinite;
@@ -64,6 +63,8 @@ body {
 }
 .container .displayPokemon .back img {
   margin-top: 20px;
+  background-color: bisque;
+  border-radius: 50%;
 }
 .container .displayPokemon .front {
   position: relative;

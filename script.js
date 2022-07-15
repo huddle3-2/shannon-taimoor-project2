@@ -5,6 +5,10 @@ pokeApp.message = document.querySelector(".message");
 
 pokeApp.pokeCards = [];
 
+pokeApp.moves = 0;
+
+pokeApp.displayMoves = document.querySelector(".moves");
+
 pokeApp.counter = 0;
 
 // Fetch Pokemon Data using API, add url and name into an array
@@ -62,6 +66,10 @@ pokeApp.fetchImages = function (pokeCards) {
 pokeApp.addClickSetup = () => {
   pokeApp.newLi.addEventListener("click", function (e) {
     //adds to counter on click
+    pokeApp.moves++;
+
+    // update move count
+    pokeApp.displayMoves.textContent = `${pokeApp.moves}`;
     pokeApp.counter++;
     //check if target has class of front
     if (e.target.parentNode.className.includes("front")) {
@@ -84,6 +92,7 @@ pokeApp.checkMatch = () => {
   if (pokeApp.counter === 2) {
     const flippedCards = document.querySelectorAll(".flipped:not(.matched)");
     if (flippedCards[0].alt === flippedCards[1].alt) {
+      pokeApp.message.textContent = "It's a match!";
       pokeApp.message.classList.add("appear");
       setTimeout(() => {
         flippedCards[0].classList.add("matched");
@@ -113,7 +122,8 @@ pokeApp.checkGame = () => {
   // console.log(pokeApp.pokeCards.length)
 
   if (matchedCards.length === pokeApp.pokeCards.length * 2) {
-    alert("you've completed the game!");
+    pokeApp.message.textContent = "You win the game!";
+    pokeApp.message.classList.add("appear");
   }
 
   // queryselector all with class matched

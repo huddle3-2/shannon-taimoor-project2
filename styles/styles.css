@@ -10,7 +10,10 @@ h1 {
 body {
   background-image: url("../assets/background.png");
   background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
   margin: 0;
+  height: 95vh;
 }
 
 .container {
@@ -75,6 +78,14 @@ body {
 }
 .container .displayPokemon img {
   width: 100%;
+}
+
+h2 {
+  font-family: "Poppins", sans-serif;
+}
+
+p {
+  font-family: "Poppins", sans-serif;
 }
 
 .message {

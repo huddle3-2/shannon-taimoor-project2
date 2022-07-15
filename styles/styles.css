@@ -56,6 +56,7 @@ body {
   height: 100%;
   position: absolute;
   top: 0;
+  background-color: white;
 }
 .container .displayPokemon .back:active {
   -webkit-animation: flip 0.5s linear 5s infinite;

@@ -78,11 +78,7 @@ body {
 }
 
 .hide {
-  display: none;
-}
-
-.show {
-  display: block;
+  opacity: 0;
 }
 
 @-webkit-keyframes flip {

@@ -3,7 +3,6 @@ const pokeApp = {};
 pokeApp.ulEl = document.querySelector(".displayPokemon");
 
 pokeApp.pokeCards = [];
-pokeApp.firstChoiceSelected = false;
 pokeApp.counter = 0;
 
 // Fetch Pokemon Data using API, add url and name into an array
@@ -59,97 +58,42 @@ pokeApp.fetchImages = function (pokeCards) {
 // setup Event Listener
 pokeApp.addClickSetup = () => {
   pokeApp.newLi.addEventListener("click", function (e) {
-    pokeApp.handleClick(e);
+    //adds to counter on click
+    pokeApp.counter++;
+    //check if target has class of front
+    if (e.target.parentNode.className.includes("front")) {
+      if (pokeApp.counter <= 2) {
+        // put target parent into variable and add class of flipped
+        const choiceParent = e.target.parentNode;
+        const choice = e.target.parentNode.nextSibling.firstChild;
+        choiceParent.classList.add("hide");
+        choice.classList.add("flipped");
+        pokeApp.checkMatch();
+      }
+    }
+
+    console.log(pokeApp.counter);
   });
 };
 
-// When user's click, execute line of code
-pokeApp.handleClick = (e) => {
-  //counter to keep trash of clicks
-
-  // adds counter
-  pokeApp.counter++;
-
-  // If counter is less than or equal to two, grab the elements and store in variables
-  if (pokeApp.counter <= 2) {
-    // If first choice selected is false, grab the elements and store in variables
-    if (!pokeApp.firstChoiceSelected) {
-      pokeApp.firstChoice = e.target.parentNode.nextSibling.firstChild;
-
-      // store card image parent variable into new variable
-      pokeApp.cardImageOne = e.target.parentNode;
-      console.log(pokeApp.cardImageOne);
-
-      pokeApp.cardImageOne.classList.toggle("hide");
-
-      pokeApp.firstChoiceSelected = true;
-    } else {
-      // ELSE, grab the elements and store in SECOND choice variables
-
-      pokeApp.secondChoice = e.target.parentNode.nextSibling.firstChild;
-
-      // store card image parent variable into new variable
-      pokeApp.cardImageTwo = e.target.parentNode;
-      console.log(pokeApp.cardImageTwo);
-
-      pokeApp.cardImageTwo.classList.toggle("hide");
-    }
-    console.log(pokeApp.counter);
-  } else {
-    // if counter has reached two, remove event listener so users cannot click while we are checking if the two choices match
-    pokeApp.newLi.removeEventListener("click", pokeApp.handleClick);
-  }
-
-  if (
-    pokeApp.firstChoice &&
-    pokeApp.firstChoice !== e.target.parentNode.nextSibling.firstChild
-  ) {
-    pokeApp.checkMatch();
-  } else {
-  }
-
-  console.log("first choice");
-  console.log(pokeApp.firstChoice.alt);
-  console.log("second choice");
-  console.log(pokeApp.secondChoice.alt);
-  console.log(pokeApp.counter);
-};
-
-// checks Pokemon Match
+//Check match
 pokeApp.checkMatch = () => {
-  if (
-    pokeApp.firstChoiceSelected &&
-    pokeApp.secondChoice.alt === pokeApp.firstChoice.alt
-  ) {
-    // IF the Value of the First choice and second choice is the same, it will remove the image from the page
-
-    setTimeout(function () {
-      pokeApp.firstChoice.remove();
-      pokeApp.secondChoice.remove();
-      pokeApp.counter = 0;
-      // reset first choice back to false
-      pokeApp.firstChoiceSelected = false;
-      pokeApp.firstChoice = "";
-      pokeApp.secondChoice = "";
-      console.log("first choice time out");
-      console.log(pokeApp.firstChoice);
-      console.log(pokeApp.secondChoice);
-      pokeApp.addClickSetup();
-    }, 2000);
-  } else {
-    // If value of first and second choice do NOT match, flip the cards back over
-    setTimeout(function () {
-      pokeApp.cardImageOne.classList.toggle("hide");
-      pokeApp.cardImageTwo.classList.toggle("hide");
-      pokeApp.counter = 0;
-      // reset first choice back to false
-      pokeApp.firstChoiceSelected = false;
-      pokeApp.firstChoice = "";
-      pokeApp.secondChoice = "";
-      console.log(pokeApp.firstChoice);
-      console.log(pokeApp.secondChoice);
-      pokeApp.addClickSetup();
-    }, 2000);
+  if (pokeApp.counter === 2) {
+    const flippedCards = document.querySelectorAll(".flipped:not(.matched)");
+    if (flippedCards[0].alt === flippedCards[1].alt) {
+      flippedCards[0].classList.add("matched");
+      flippedCards[1].classList.add("matched");
+    } else {
+      setTimeout(() => {
+        flippedCards.forEach((card) => {
+          if (!card.className.includes("matched")) {
+            card.classList.remove("flipped");
+            card.parentElement.previousSibling.classList.remove("hide");
+          }
+        });
+        pokeApp.counter = 0;
+      }, 2000);
+    }
   }
 };
 

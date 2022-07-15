@@ -1,19 +1,19 @@
-body{
-  background-image:url('../assets/background.png');
-  background-size:cover;
-  margin:0;
+body {
+  background-image: url("../assets/background.png");
+  background-size: cover;
+  margin: 0;
 }
 
 .container {
-  display:flex;
-  flex-direction:column;
+  display: flex;
+  flex-direction: column;
   max-width: 1280px;
   width: 80%;
   margin: 0 auto;
   align-items: center;
-  padding:50px 0;
-  background-color:rgba($color:white,$alpha:0.5);
-  border-radius:40px;
+  padding: 50px 0;
+  background-color: rgba($color: white, $alpha: 0.5);
+  border-radius: 40px;
 
   .displayPokemon {
     width: 70%;
@@ -42,8 +42,8 @@ body{
       position: absolute;
       top: 0;
 
-      &:active{
-        animation:flip 0.5s linear 5s infinite;
+      &:active {
+        animation: flip 0.5s linear 5s infinite;
       }
 
       img {
@@ -54,15 +54,14 @@ body{
     // back of pokemon cards
     .front {
       position: relative;
-      z-index:100;
+      z-index: 100;
       // transform:translateY(0);
-      
-      &:hover{
-        animation:bounce 1s infinite;
-      }
-      &:active{
-        animation:flip 0.5s linear 5s infinite;
 
+      &:hover {
+        animation: bounce 1s infinite;
+      }
+      &:active {
+        animation: flip 0.5s linear 5s infinite;
       }
     }
     img {
@@ -72,26 +71,27 @@ body{
 }
 
 .hide {
-  display: none;
-}
-
-.show {
-  display: block;
+  opacity: 0;
 }
 
 // flip animation
-@keyframes flip{
-
-    from{
-        transform: rotateY(180deg);
-        opacity:0;
-    }
+@keyframes flip {
+  from {
+    transform: rotateY(180deg);
+    opacity: 0;
+  }
 }
 
 // bounce animation
 
-@keyframes bounce{
-  0%{transform:translateY(0px)}
-  50%{transform:translateY(-20px)}
-  100%{transform:translateY(0px)}
+@keyframes bounce {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
 }

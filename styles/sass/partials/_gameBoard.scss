@@ -44,6 +44,7 @@ body {
       height: 100%;
       position: absolute;
       top: 0;
+      background-color:white;
 
       &:active {
         animation: flip 0.5s linear 5s infinite;

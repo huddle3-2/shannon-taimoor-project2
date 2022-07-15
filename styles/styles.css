@@ -1,10 +1,35 @@
+html {
+  font-size: 125%;
+}
+
+h1 {
+  font-family: "VT323", monospace;
+  text-align: center;
+}
+
+body {
+  background-image: url("../assets/background.png");
+  background-size: cover;
+  margin: 0;
+}
+
 .container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   max-width: 1280px;
   width: 80%;
   margin: 0 auto;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  padding: 50px 0;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 40px;
 }
 .container .displayPokemon {
   width: 70%;
@@ -27,16 +52,26 @@
   width: 100%;
   height: 100%;
   position: absolute;
-  border: 2px red solid;
   top: 0;
+}
+.container .displayPokemon .back:active {
+  -webkit-animation: flip 0.5s linear 5s infinite;
+          animation: flip 0.5s linear 5s infinite;
 }
 .container .displayPokemon .back img {
   margin-top: 20px;
 }
 .container .displayPokemon .front {
   position: relative;
-  border: 2px orange solid;
   z-index: 100;
+}
+.container .displayPokemon .front:hover {
+  -webkit-animation: bounce 1s infinite;
+          animation: bounce 1s infinite;
+}
+.container .displayPokemon .front:active {
+  -webkit-animation: flip 0.5s linear 5s infinite;
+          animation: flip 0.5s linear 5s infinite;
 }
 .container .displayPokemon img {
   width: 100%;
@@ -48,4 +83,70 @@
 
 .show {
   display: block;
+}
+
+@-webkit-keyframes flip {
+  from {
+    -webkit-transform: rotateY(180deg);
+            transform: rotateY(180deg);
+    opacity: 0;
+  }
+}
+
+@keyframes flip {
+  from {
+    -webkit-transform: rotateY(180deg);
+            transform: rotateY(180deg);
+    opacity: 0;
+  }
+}
+@-webkit-keyframes bounce {
+  0% {
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+  }
+  50% {
+    -webkit-transform: translateY(-20px);
+            transform: translateY(-20px);
+  }
+  100% {
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+  }
+}
+@keyframes bounce {
+  0% {
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+  }
+  50% {
+    -webkit-transform: translateY(-20px);
+            transform: translateY(-20px);
+  }
+  100% {
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+  }
+}
+footer {
+  background-color: black;
+  width: 100%;
+  height: 5vh;
+  text-align: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  position: absolute;
+  bottom: 0;
+}
+footer p {
+  font-family: "Poppins", sans-serif;
+  color: white;
+  font-weight: bold;
 }

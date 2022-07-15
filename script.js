@@ -109,9 +109,10 @@ pokeApp.handleClick = (e) => {
   }
 
   console.log("first choice");
-  console.log(pokeApp.firstChoice);
+  console.log(pokeApp.firstChoice.alt);
   console.log("second choice");
-  console.log(pokeApp.secondChoice);
+  console.log(pokeApp.secondChoice.alt);
+  console.log(pokeApp.counter);
 };
 
 // checks Pokemon Match
@@ -128,6 +129,7 @@ pokeApp.checkMatch = () => {
       pokeApp.counter = 0;
       // reset first choice back to false
       pokeApp.firstChoiceSelected = false;
+      pokeApp.firstChoice = "";
       pokeApp.secondChoice = "";
       console.log("first choice time out");
       console.log(pokeApp.firstChoice);
@@ -142,6 +144,7 @@ pokeApp.checkMatch = () => {
       pokeApp.counter = 0;
       // reset first choice back to false
       pokeApp.firstChoiceSelected = false;
+      pokeApp.firstChoice = "";
       pokeApp.secondChoice = "";
       console.log(pokeApp.firstChoice);
       console.log(pokeApp.secondChoice);

@@ -70,6 +70,13 @@ body {
   }
 }
 
+.message{
+  visibility:hidden;
+}
+.appear{
+  visibility:visible;
+}
+
 .hide {
   opacity: 0;
 }
@@ -77,10 +84,17 @@ body {
 // flip animation
 @keyframes flip {
   from {
-    transform: rotateY(180deg);
-    opacity: 0;
+    transform: rotateY(5deg);
+    // opacity: 0;
   }
 }
+
+// message appear animation{
+  @keyframes appear{
+    from{
+      opacity:1;
+    }
+  }
 
 // bounce animation
 

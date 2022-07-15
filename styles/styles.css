@@ -77,23 +77,39 @@ body {
   width: 100%;
 }
 
+.message {
+  visibility: hidden;
+}
+
+.appear {
+  visibility: visible;
+}
+
 .hide {
   opacity: 0;
 }
 
 @-webkit-keyframes flip {
   from {
-    -webkit-transform: rotateY(180deg);
-            transform: rotateY(180deg);
-    opacity: 0;
+    -webkit-transform: rotateY(5deg);
+            transform: rotateY(5deg);
   }
 }
 
 @keyframes flip {
   from {
-    -webkit-transform: rotateY(180deg);
-            transform: rotateY(180deg);
-    opacity: 0;
+    -webkit-transform: rotateY(5deg);
+            transform: rotateY(5deg);
+  }
+}
+@-webkit-keyframes appear {
+  from {
+    opacity: 1;
+  }
+}
+@keyframes appear {
+  from {
+    opacity: 1;
   }
 }
 @-webkit-keyframes bounce {

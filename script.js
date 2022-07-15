@@ -1,8 +1,10 @@
 const pokeApp = {};
 
 pokeApp.ulEl = document.querySelector(".displayPokemon");
+pokeApp.message = document.querySelector(".message");
 
 pokeApp.pokeCards = [];
+
 pokeApp.counter = 0;
 
 // Fetch Pokemon Data using API, add url and name into an array
@@ -51,6 +53,7 @@ pokeApp.fetchImages = function (pokeCards) {
 
         // call function for eventListener
         pokeApp.addClickSetup();
+        console.log(pokeApp.pokeCards);
       });
   });
 };
@@ -81,8 +84,14 @@ pokeApp.checkMatch = () => {
   if (pokeApp.counter === 2) {
     const flippedCards = document.querySelectorAll(".flipped:not(.matched)");
     if (flippedCards[0].alt === flippedCards[1].alt) {
-      flippedCards[0].classList.add("matched");
-      flippedCards[1].classList.add("matched");
+      pokeApp.message.classList.add("appear");
+      setTimeout(() => {
+        flippedCards[0].classList.add("matched");
+        flippedCards[1].classList.add("matched");
+        pokeApp.counter = 0;
+        pokeApp.message.classList.remove("appear");
+        pokeApp.checkGame();
+      }, 1000);
     } else {
       setTimeout(() => {
         flippedCards.forEach((card) => {
@@ -97,8 +106,24 @@ pokeApp.checkMatch = () => {
   }
 };
 
+pokeApp.checkGame = () => {
+  console.log("checking match...");
+  const matchedCards = document.querySelectorAll(".matched");
+
+  // console.log(pokeApp.pokeCards.length)
+
+  if (matchedCards.length === pokeApp.pokeCards.length * 2) {
+    alert("you've completed the game!");
+  }
+
+  // queryselector all with class matched
+  // if matched = pokeCard.length *2, game is done
+};
+
 pokeApp.init = () => {
   pokeApp.fetchData();
 };
 
 pokeApp.init();
+
+// PSEUDO

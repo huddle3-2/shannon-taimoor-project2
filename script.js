@@ -57,7 +57,6 @@ pokeApp.fetchImages = function (pokeCards) {
 
         // call function for eventListener
         pokeApp.addClickSetup();
-        console.log(pokeApp.pokeCards);
       });
   });
 };
@@ -65,14 +64,19 @@ pokeApp.fetchImages = function (pokeCards) {
 // setup Event Listener
 pokeApp.addClickSetup = () => {
   pokeApp.newLi.addEventListener("click", function (e) {
+    console.log(e);
+    console.log("hello");
+
     //adds to counter on click
     pokeApp.moves++;
 
     // update move count
     pokeApp.displayMoves.textContent = `${pokeApp.moves}`;
-    pokeApp.counter++;
+
     //check if target has class of front
     if (e.target.parentNode.className.includes("front")) {
+      pokeApp.counter++;
+      console.log(pokeApp.counter);
       if (pokeApp.counter <= 2) {
         // put target parent into variable and add class of flipped
         const choiceParent = e.target.parentNode;
@@ -81,6 +85,8 @@ pokeApp.addClickSetup = () => {
         choice.classList.add("flipped");
         pokeApp.checkMatch();
       }
+    } else {
+      alert("pick a new card!");
     }
 
     console.log(pokeApp.counter);
@@ -95,8 +101,8 @@ pokeApp.checkMatch = () => {
       pokeApp.message.textContent = "It's a match!";
       pokeApp.message.classList.add("appear");
       setTimeout(() => {
-        flippedCards[0].classList.add("matched");
-        flippedCards[1].classList.add("matched");
+        flippedCards[0].classList.add("matched", "hide");
+        flippedCards[1].classList.add("matched", "hide");
         pokeApp.counter = 0;
         pokeApp.message.classList.remove("appear");
         pokeApp.checkGame();
@@ -116,18 +122,12 @@ pokeApp.checkMatch = () => {
 };
 
 pokeApp.checkGame = () => {
-  console.log("checking match...");
   const matchedCards = document.querySelectorAll(".matched");
-
-  // console.log(pokeApp.pokeCards.length)
 
   if (matchedCards.length === pokeApp.pokeCards.length * 2) {
     pokeApp.message.textContent = "You win the game!";
     pokeApp.message.classList.add("appear");
   }
-
-  // queryselector all with class matched
-  // if matched = pokeCard.length *2, game is done
 };
 
 pokeApp.init = () => {

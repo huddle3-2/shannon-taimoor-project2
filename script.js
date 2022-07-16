@@ -156,7 +156,7 @@ pokeApp.checkMatch = () => {
 pokeApp.checkGame = () => {
   const matchedCards = document.querySelectorAll(".matched");
 
-  if (matchedCards.length === pokeApp.pokeCards.length * 2) {
+  if (matchedCards.length === pokeApp.pokeCards.length) {
     pokeApp.message.textContent = "You win the game!";
     pokeApp.message.classList.add("appear");
   }

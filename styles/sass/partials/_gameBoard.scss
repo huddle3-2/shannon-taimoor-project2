@@ -1,17 +1,17 @@
 body {
   background-image: url("../assets/background.png");
   background-size: cover;
-  background-repeat:no-repeat;
-  background-position:center;
+  background-repeat: no-repeat;
+  background-position: center;
   margin: 0;
-  height:95vh;
+  height: 95vh;
 }
 
-.scoreBoard{
-  .wrapper{
-    max-width:1280px;
-    width:70%;
-    margin:0 auto;
+.scoreBoard {
+  .wrapper {
+    max-width: 1280px;
+    width: 70%;
+    margin: 0 auto;
   }
 }
 
@@ -43,6 +43,7 @@ body {
       position: relative;
       width: 100%;
       height: 100%;
+      cursor: pointer;
       // padding:20px;
     }
 
@@ -55,8 +56,8 @@ body {
 
       img {
         margin-top: 20px;
-        background-color:bisque;
-        border-radius:50%;
+        background-color: bisque;
+        border-radius: 50%;
       }
     }
 
@@ -79,44 +80,44 @@ body {
   }
 }
 
-h2{
-  font-family:$poppins;
-  margin:0;
+h2 {
+  font-family: $poppins;
+  margin: 0;
 }
 
-p{  
-  font-family:$poppins;
+p {
+  font-family: $poppins;
 }
 
-.message{
-  visibility:hidden;
+.message {
+  visibility: hidden;
 }
-.appear{
-  visibility:visible;
+.appear {
+  visibility: visible;
 }
 
-.flipped{
-  animation:flip 1s linear;
+.flipped {
+  animation: flip 1s linear;
 }
 
 .hide {
-  opacity:0;
+  opacity: 0;
 }
 
 // flip animation
 @keyframes flip {
   from {
     transform: rotateY(180deg);
-    opacity:0;
+    opacity: 0;
   }
 }
 
 // message appear animation{
-  @keyframes appear{
-    from{
-      opacity:1;
-    }
+@keyframes appear {
+  from {
+    opacity: 1;
   }
+}
 
 // bounce animation
 

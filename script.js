@@ -25,7 +25,7 @@ pokeApp.fetchData = () => {
     })
     .then(function () {
       pokeApp.shufflePokeCards();
-      pokeApp.createBoard(pokeApp.pokeCards);
+      pokeApp.duplicateCards();
       pokeApp.createBoard(pokeApp.pokeCards);
     });
 };
@@ -74,6 +74,17 @@ pokeApp.shufflePokeCards = () => {
   }
 };
 
+//duplicate pokeCards array
+pokeApp.duplicateCards = () => {
+  const newArray = [];
+
+  pokeApp.pokeCards.forEach((card) => {
+    newArray.push(card);
+    newArray.push(card);
+  });
+
+  pokeApp.pokeCards = newArray;
+};
 // setup Event Listener
 pokeApp.addClickSetup = () => {
   pokeApp.newLi.addEventListener("click", function (e) {

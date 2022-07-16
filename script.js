@@ -24,20 +24,21 @@ pokeApp.fetchData = () => {
       });
     })
     .then(function () {
-      pokeApp.fetchImages(pokeApp.pokeCards);
-      pokeApp.fetchImages(pokeApp.pokeCards);
+      pokeApp.shufflePokeCards();
+      pokeApp.createBoard(pokeApp.pokeCards);
+      pokeApp.createBoard(pokeApp.pokeCards);
     });
 };
 
 // fetch ANOTHER set of data using the URL we just received from the first API
-pokeApp.fetchImages = function (pokeCards) {
+pokeApp.createBoard = function (pokeCards) {
   pokeCards.forEach((card) => {
     fetch(card.url)
       .then(function (data) {
         return data.json();
       })
       .then(function (result) {
-        card.urlImg = result.sprites.front_default;
+        card.imgUrl = result.sprites.front_default;
       })
       .then(function () {
         pokeApp.newLi = document.createElement("li");
@@ -48,7 +49,7 @@ pokeApp.fetchImages = function (pokeCards) {
         pokeApp.backDiv.classList.add("back");
 
         pokeApp.frontDiv.innerHTML = `<img src="./assets/back-card.png" draggable="false"/>`;
-        pokeApp.backDiv.innerHTML = `<img src=${card.urlImg} alt=${card.name}>`;
+        pokeApp.backDiv.innerHTML = `<img src=${card.imgUrl} alt=${card.name}>`;
         pokeApp.newLi.append(pokeApp.frontDiv, pokeApp.backDiv);
         pokeApp.ulEl.appendChild(pokeApp.newLi);
 
@@ -56,6 +57,21 @@ pokeApp.fetchImages = function (pokeCards) {
         pokeApp.addClickSetup();
       });
   });
+};
+
+//shuffle fetched data
+pokeApp.shufflePokeCards = () => {
+  //loop through pokeCards array
+  for (let i = pokeApp.pokeCards.length - 1; i > 0; i--) {
+    //assign random index from 1 to length of pokeCards array
+    const randomIndex = Math.floor(Math.random() * (i + 1));
+    const originalValue = pokeApp.pokeCards[i];
+
+    //replace original value with value at random index
+    pokeApp.pokeCards[i] = pokeApp.pokeCards[randomIndex];
+    //replace value at random index with original
+    pokeApp.pokeCards[randomIndex] = originalValue;
+  }
 };
 
 // setup Event Listener

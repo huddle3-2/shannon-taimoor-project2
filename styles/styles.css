@@ -2,6 +2,12 @@ html {
   font-size: 125%;
 }
 
+.wrapper {
+  max-width: 1280px;
+  width: 80%;
+  margin: 0 auto;
+}
+
 h1 {
   font-family: "VT323", monospace;
   text-align: center;
@@ -16,6 +22,20 @@ body {
   height: 95vh;
 }
 
+main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.scoreBoard .wrapper {
+  width: 70%;
+}
+
 .container {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -24,6 +44,9 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  min-height: -webkit-max-content;
+  min-height: -moz-max-content;
+  min-height: max-content;
   max-width: 1280px;
   width: 80%;
   margin: 0 auto;
@@ -33,9 +56,14 @@ body {
   padding: 50px 0;
   background-color: rgba(255, 255, 255, 0.5);
   border-radius: 40px;
+  border: 2px orange solid;
 }
 .container .displayPokemon {
+  border: 2px red solid;
   width: 70%;
+  height: -webkit-max-content;
+  height: -moz-max-content;
+  height: max-content;
   min-width: 250px;
   max-width: 1280px;
   margin: 0 auto;
@@ -83,6 +111,7 @@ body {
 }
 
 h2 {
+  margin: 0;
   font-family: "Poppins", sans-serif;
 }
 
@@ -99,7 +128,7 @@ p {
 }
 
 .hide {
-  opacity: 0;
+  display: none;
 }
 
 @-webkit-keyframes flip {

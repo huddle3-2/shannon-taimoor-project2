@@ -24,8 +24,8 @@ pokeApp.fetchData = () => {
       });
     })
     .then(function () {
-      pokeApp.shufflePokeCards();
       pokeApp.duplicateCards();
+      pokeApp.shufflePokeCards();
       pokeApp.createBoard(pokeApp.pokeCards);
     });
 };
@@ -78,11 +78,13 @@ pokeApp.shufflePokeCards = () => {
 pokeApp.duplicateCards = () => {
   const newArray = [];
 
+  //push each element from pokeCards to newArray twice
   pokeApp.pokeCards.forEach((card) => {
     newArray.push(card);
     newArray.push(card);
   });
 
+  //assign newArray to pokeCards array
   pokeApp.pokeCards = newArray;
 };
 // setup Event Listener

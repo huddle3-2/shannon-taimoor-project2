@@ -2,14 +2,11 @@ const pokeApp = {};
 
 pokeApp.ulEl = document.querySelector(".displayPokemon");
 pokeApp.message = document.querySelector(".message");
-
-pokeApp.pokeCards = [];
-
-pokeApp.moves = 0;
-
 pokeApp.displayMoves = document.querySelector(".moves");
 
+pokeApp.pokeCards = [];
 pokeApp.counter = 0;
+pokeApp.moves = 0;
 
 // Fetch Pokemon Data using API, add url and name into an array
 pokeApp.fetchData = () => {
@@ -64,19 +61,23 @@ pokeApp.fetchImages = function (pokeCards) {
 // setup Event Listener
 pokeApp.addClickSetup = () => {
   pokeApp.newLi.addEventListener("click", function (e) {
-    console.log(e);
-    console.log("hello");
-
     //check if target has class of front
     if (e.target.parentNode.className.includes("front")) {
       pokeApp.counter++;
 
       if (pokeApp.counter <= 2) {
         // put target parent into variable and add class of flipped
-        const choiceParent = e.target.parentNode;
-        const choice = e.target.parentNode.nextSibling.firstChild;
-        choiceParent.classList.add("hide");
-        choice.classList.add("flipped");
+        pokeApp.choiceParent = e.target.parentNode;
+        pokeApp.choice = e.target.parentNode.nextSibling.firstChild;
+
+        pokeApp.choiceParent.style.animation = "flip 1s linear";
+
+        setTimeout(() => {
+          pokeApp.choiceParent.classList.add("hide");
+          pokeApp.choiceParent.style.zIndex = "0";
+        }, 500);
+
+        pokeApp.choice.classList.add("flipped");
 
         //adds to counter on click
         pokeApp.moves++;
@@ -94,8 +95,11 @@ pokeApp.checkMatch = () => {
   if (pokeApp.counter === 2) {
     const flippedCards = document.querySelectorAll(".flipped:not(.matched)");
     if (flippedCards[0].alt === flippedCards[1].alt) {
+      // display message for players if they matched a card
       pokeApp.message.textContent = "It's a match!";
       pokeApp.message.classList.add("appear");
+
+      // adds matched class and slows down the game so players don't spam click
       setTimeout(() => {
         flippedCards[0].classList.add("matched");
         flippedCards[1].classList.add("matched");
@@ -107,8 +111,11 @@ pokeApp.checkMatch = () => {
       setTimeout(() => {
         flippedCards.forEach((card) => {
           if (!card.className.includes("matched")) {
+            console.log(pokeApp.choiceParent);
+            // pokeApp.choiceParent.style.zIndex = "10";
             card.classList.remove("flipped");
             card.parentElement.previousSibling.classList.remove("hide");
+            card.parentElement.previousSibling.style.zIndex = "10";
           }
         });
         pokeApp.counter = 0;
@@ -118,18 +125,12 @@ pokeApp.checkMatch = () => {
 };
 
 pokeApp.checkGame = () => {
-  // console.log("checking match...");
   const matchedCards = document.querySelectorAll(".matched");
-
-  // console.log(pokeApp.pokeCards.length)
 
   if (matchedCards.length === pokeApp.pokeCards.length * 2) {
     pokeApp.message.textContent = "You win the game!";
     pokeApp.message.classList.add("appear");
   }
-
-  // queryselector all with class matched
-  // if matched = pokeCard.length *2, game is done
 };
 
 pokeApp.init = () => {
@@ -137,5 +138,3 @@ pokeApp.init = () => {
 };
 
 pokeApp.init();
-
-// PSEUDO

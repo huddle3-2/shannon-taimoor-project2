@@ -7,6 +7,14 @@ body {
   height:95vh;
 }
 
+.scoreBoard{
+  .wrapper{
+    max-width:1280px;
+    width:70%;
+    margin:0 auto;
+  }
+}
+
 .container {
   display: flex;
   flex-direction: column;
@@ -44,11 +52,6 @@ body {
       height: 100%;
       position: absolute;
       top: 0;
-  
-
-      &:active {
-        animation: flip 0.5s linear 5s infinite;
-      }
 
       img {
         margin-top: 20px;
@@ -92,15 +95,19 @@ p{
   visibility:visible;
 }
 
+.flipped{
+  animation:flip 1s linear;
+}
+
 .hide {
-  display:none;
+  opacity:0;
 }
 
 // flip animation
 @keyframes flip {
   from {
-    transform: rotateY(5deg);
-    // opacity: 0;
+    transform: rotateY(180deg);
+    opacity:0;
   }
 }
 

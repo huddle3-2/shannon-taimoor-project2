@@ -16,6 +16,12 @@ body {
   height: 95vh;
 }
 
+.scoreBoard .wrapper {
+  max-width: 1280px;
+  width: 70%;
+  margin: 0 auto;
+}
+
 .container {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -57,10 +63,6 @@ body {
   position: absolute;
   top: 0;
 }
-.container .displayPokemon .back:active {
-  -webkit-animation: flip 0.5s linear 5s infinite;
-          animation: flip 0.5s linear 5s infinite;
-}
 .container .displayPokemon .back img {
   margin-top: 20px;
   background-color: bisque;
@@ -99,21 +101,28 @@ p {
   visibility: visible;
 }
 
+.flipped {
+  -webkit-animation: flip 1s linear;
+          animation: flip 1s linear;
+}
+
 .hide {
-  display: none;
+  opacity: 0;
 }
 
 @-webkit-keyframes flip {
   from {
-    -webkit-transform: rotateY(5deg);
-            transform: rotateY(5deg);
+    -webkit-transform: rotateY(180deg);
+            transform: rotateY(180deg);
+    opacity: 0;
   }
 }
 
 @keyframes flip {
   from {
-    -webkit-transform: rotateY(5deg);
-            transform: rotateY(5deg);
+    -webkit-transform: rotateY(180deg);
+            transform: rotateY(180deg);
+    opacity: 0;
   }
 }
 @-webkit-keyframes appear {

@@ -1,3 +1,8 @@
+@font-face {
+  font-family: "Pokemon GB";
+  src: url("../fonts/PokemonGB/PokemonGb.ttf");
+  font-weight: normal;
+}
 html {
   font-size: 125%;
 }
@@ -37,8 +42,12 @@ body {
       -ms-flex-align: center;
           align-items: center;
   padding: 50px 0;
-  background-color: rgba(255, 255, 255, 0.5);
-  border-radius: 40px;
+  background-color: rgba(248, 243, 248, 0.5);
+  -o-border-image: url("../assets/frame.png") 42 round;
+     border-image: url("../assets/frame.png") 42 round;
+  border-width: 21px;
+  border-style: solid;
+  background-clip: padding-box;
 }
 .container .displayPokemon {
   width: 70%;
@@ -91,7 +100,7 @@ h2 {
 }
 
 p {
-  font-family: "Poppins", sans-serif;
+  font-family: "Pokemon GB";
 }
 
 .message {

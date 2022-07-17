@@ -23,8 +23,12 @@ body {
   margin: 0 auto;
   align-items: center;
   padding: 50px 0;
-  background-color: rgba($color: white, $alpha: 0.5);
-  border-radius: 40px;
+  background-color: rgba($color: #f8f3f8, $alpha: 0.5);
+  // border-radius: 40px;
+  border-image: url("../assets/frame.png") 42 round;
+  border-width: 21px;
+  border-style: solid;
+  background-clip: padding-box;
 
   .displayPokemon {
     width: 70%;
@@ -86,7 +90,7 @@ h2 {
 }
 
 p {
-  font-family: $poppins;
+  font-family: $pokemonGB;
 }
 
 .message {

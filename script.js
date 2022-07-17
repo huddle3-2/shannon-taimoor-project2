@@ -3,6 +3,7 @@ const pokeApp = {};
 pokeApp.ulEl = document.querySelector(".displayPokemon");
 pokeApp.message = document.querySelector(".message");
 pokeApp.displayMoves = document.querySelector(".moves");
+pokeApp.button = document.querySelector(".button");
 
 pokeApp.pokeCards = [];
 pokeApp.counter = 0;
@@ -89,6 +90,7 @@ pokeApp.duplicateCards = () => {
 };
 // setup Event Listener
 pokeApp.addClickSetup = () => {
+  pokeApp.button.addEventListener("click", pokeApp.handleButtonClick);
   pokeApp.newLi.addEventListener("click", function (e) {
     //check if target has class of front
     if (e.target.parentNode.className.includes("front")) {
@@ -159,7 +161,19 @@ pokeApp.checkGame = () => {
   if (matchedCards.length === pokeApp.pokeCards.length) {
     pokeApp.message.textContent = "You win the game!";
     pokeApp.message.classList.add("appear");
+    pokeApp.button.style.visibility = "visible";
   }
+};
+
+pokeApp.handleButtonClick = () => {
+  pokeApp.ulEl.innerHTML = "";
+  pokeApp.pokeCards = [];
+  pokeApp.counter = 0;
+  pokeApp.moves = 0;
+  pokeApp.message.classList.remove("appear");
+  pokeApp.button.style.visibility = "hidden";
+  pokeApp.displayMoves.textContent = "0";
+  pokeApp.fetchData();
 };
 
 pokeApp.init = () => {

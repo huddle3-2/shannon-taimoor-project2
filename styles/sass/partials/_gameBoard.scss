@@ -100,7 +100,7 @@ main {
 
 h2 {
   font-family: $poppins;
-  margin: 0;
+  margin: 10px 0 0 0;
 }
 
 p {
@@ -120,6 +120,36 @@ p {
 
 .hide {
   opacity: 0;
+}
+
+.button {
+  font-family: $pokemonGB;
+  color: #181010;
+  border: none;
+  padding-left: 15px;
+  font-size: 0.8rem;
+  background-color: transparent;
+  visibility: hidden;
+  position: relative;
+  cursor: pointer;
+  margin-top: 20px;
+
+  &:hover::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -2px;
+    width: 2px;
+    height: 2px;
+    font-size: 2px;
+    color: #181010;
+    box-shadow: 1em 0em 0 #181010, 2em 0em 0 #181010, 1em 1em 0 #181010,
+      2em 1em 0 #181010, 3em 1em 0 #181010, 1em 2em 0 #181010, 2em 2em 0 #181010,
+      3em 2em 0 #181010, 4em 2em 0 #181010, 1em 3em 0 #181010, 2em 3em 0 #181010,
+      3em 3em 0 #181010, 4em 3em 0 #181010, 5em 3em 0 #181010, 1em 4em 0 #181010,
+      2em 4em 0 #181010, 3em 4em 0 #181010, 4em 4em 0 #181010, 1em 5em 0 #181010,
+      2em 5em 0 #181010, 3em 5em 0 #181010, 1em 6em 0 #181010, 2em 6em 0 #181010;
+  }
 }
 
 // flip animation

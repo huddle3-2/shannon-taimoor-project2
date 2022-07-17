@@ -3,16 +3,30 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  background-attachment: fixed;
   margin: 0;
-  height: 95vh;
+}
+
+main {
+  padding: 0 0 50px 0;
 }
 
 .scoreBoard {
-  .wrapper {
-    max-width: 1280px;
-    width: 70%;
-    margin: 0 auto;
-  }
+  display: flex;
+  padding-left: 20px;
+  background-color: #48a058;
+  color: #f8f3f8;
+  text-shadow: -1px -1px 0 #181010, 1px -1px 0 #181010, -1px 1px 0 #181010,
+    1px 1px 0 #181010;
+}
+
+.wrapper {
+  max-width: 1280px;
+  width: 80%;
+  margin: 0 auto;
+  border-image: url("../assets/frame.png") 42 round;
+  border-width: 21px;
+  border-style: solid;
 }
 
 .container {

@@ -1,17 +1,17 @@
-footer{
-    background-color:black;
-    width:100%;
-    height:5vh;
-    text-align:center;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    position:absolute;
-    bottom:0;
+footer {
+  background-color: black;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  bottom: 0;
 
-    p{
-        font-family:$poppins;
-        color:white;
-        font-weight:bold;
-    }
+  p {
+    font-family: $poppins;
+    color: white;
+    font-weight: bold;
+    margin: 0;
+    padding: 10px 0;
+  }
 }

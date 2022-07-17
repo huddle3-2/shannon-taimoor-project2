@@ -17,14 +17,32 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  background-attachment: fixed;
   margin: 0;
-  height: 95vh;
 }
 
-.scoreBoard .wrapper {
+main {
+  padding: 0 0 50px 0;
+}
+
+.scoreBoard {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding-left: 20px;
+  background-color: #48a058;
+  color: #f8f3f8;
+  text-shadow: -1px -1px 0 #181010, 1px -1px 0 #181010, -1px 1px 0 #181010, 1px 1px 0 #181010;
+}
+
+.wrapper {
   max-width: 1280px;
-  width: 70%;
+  width: 80%;
   margin: 0 auto;
+  -o-border-image: url("../assets/frame.png") 42 round;
+     border-image: url("../assets/frame.png") 42 round;
+  border-width: 21px;
+  border-style: solid;
 }
 
 .container {
@@ -176,7 +194,6 @@ p {
 footer {
   background-color: black;
   width: 100%;
-  height: 5vh;
   text-align: center;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -187,11 +204,12 @@ footer {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  position: absolute;
   bottom: 0;
 }
 footer p {
   font-family: "Poppins", sans-serif;
   color: white;
   font-weight: bold;
+  margin: 0;
+  padding: 10px 0;
 }

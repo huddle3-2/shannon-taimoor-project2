@@ -45,7 +45,7 @@ main {
   background-clip: padding-box;
 
   .displayPokemon {
-    width: 70%;
+    width: 50%;
     min-width: 250px;
     max-width: 1280px;
     margin: 0 auto;
@@ -115,11 +115,12 @@ p {
 }
 
 .flipped {
-  animation: flip 1s linear;
+  animation: flip 0.5s linear;
 }
 
 .hide {
-  opacity: 0;
+  opacity:0;
+  animation:disappear 0.4s, flip 1s;
 }
 
 .button {
@@ -152,6 +153,19 @@ p {
   }
 }
 
+// disappear animation
+
+@keyframes disappear{
+  0%{
+    opacity:1;
+  }
+  50%{
+    opacity:0.5;
+  }
+  100%{
+    opacity:0;
+  }
+}
 // flip animation
 @keyframes flip {
   from {

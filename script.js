@@ -9,14 +9,31 @@ pokeApp.pokeCards = [];
 pokeApp.counter = 0;
 pokeApp.moves = 0;
 
+// get user difficult level
+// if user difficulty level = x y z, then adjust the grid-template-column + grid-template-row
+// also have to fetch number in the array and display in the grid
+
 // Fetch Pokemon Data using API, add url and name into an array
-pokeApp.fetchData = () => {
-  fetch("https://pokeapi.co/api/v2/pokemon?limit=5&offset=0")
+pokeApp.fetchData = (userSelection) => {
+  const url = new URL("https://pokeapi.co/api/v2/pokemon");
+
+  url.search = new URLSearchParams({
+    limit: userSelection,
+  });
+
+  pokeApp.ulEl.innerHTML = "";
+  pokeApp.pokeCards = [];
+
+  fetch(url)
     .then(function (data) {
+      console.log(url);
+      console.log(data);
       return data.json();
     })
     .then(function (results) {
       // for each loop
+
+      console.log(results);
       results.results.forEach((item) => {
         pokeApp.pokeCards.push({
           url: item.url,
@@ -33,6 +50,7 @@ pokeApp.fetchData = () => {
 
 // fetch ANOTHER set of data using the URL we just received from the first API
 pokeApp.createBoard = function (pokeCards) {
+  pokeApp.ulEl.innerHTML = "";
   pokeCards.forEach((card) => {
     fetch(card.url)
       .then(function (data) {
@@ -57,6 +75,36 @@ pokeApp.createBoard = function (pokeCards) {
         // call function for eventListener
         pokeApp.addClickSetup();
       });
+  });
+};
+
+// trigger difficulty level event listener
+pokeApp.events = function () {
+  document.querySelector("#difficulty").addEventListener("change", function () {
+    const userSelection = this.value;
+
+    console.log(userSelection);
+    if (userSelection === "6") {
+      console.log("we in the 6");
+      pokeApp.ulEl.style.gridTemplateColumns = "repeat(4, 1fr)";
+      pokeApp.ulEl.style.gridTemplateRows = "repeat(3, 1fr)";
+    } else if (userSelection === "8") {
+      pokeApp.ulEl.style.gridTemplateColumns = "repeat(4, 1fr)";
+      pokeApp.ulEl.style.gridTemplateRows = "repeat(4, 1fr)";
+    } else if (userSelection === "10") {
+      pokeApp.ulEl.style.gridTemplateColumns = "repeat(5, 1fr)";
+      pokeApp.ulEl.style.gridTemplateRows = "repeat(4, 1fr)";
+    } else if (userSelection === "5") {
+      pokeApp.ulEl.style.gridTemplateColumns = "repeat(5, 1fr)";
+      pokeApp.ulEl.style.gridTemplateRows = "repeat(2, 1fr)";
+    }
+
+    //(userSelection === 8)
+
+    //(userSelection === 10)
+
+    pokeApp.fetchData(userSelection);
+    // pokeApp.ulEl.innerHTML = "";
   });
 };
 
@@ -101,12 +149,15 @@ pokeApp.addClickSetup = () => {
         pokeApp.choiceParent = e.target.parentNode;
         pokeApp.choice = e.target.parentNode.nextSibling.firstChild;
 
-        pokeApp.choiceParent.style.animation = "flip 1s linear";
+        // pokeApp.choiceParent.style.animation = "flip 0.5s linear 10s";
 
-        setTimeout(() => {
-          pokeApp.choiceParent.classList.add("hide");
-          pokeApp.choiceParent.style.zIndex = "0";
-        }, 500);
+        pokeApp.choiceParent.classList.add("hide");
+        pokeApp.choiceParent.style.zIndex = "0";
+
+        // setTimeout(() => {
+        //   pokeApp.choiceParent.classList.add("hide");
+        //   pokeApp.choiceParent.style.zIndex = "0";
+        // }, 500);
 
         pokeApp.choice.classList.add("flipped");
 
@@ -177,7 +228,8 @@ pokeApp.handleButtonClick = () => {
 };
 
 pokeApp.init = () => {
-  pokeApp.fetchData();
+  pokeApp.fetchData("5");
+  pokeApp.events();
 };
 
 pokeApp.init();

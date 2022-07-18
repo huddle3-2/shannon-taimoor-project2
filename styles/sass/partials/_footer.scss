@@ -4,6 +4,7 @@ footer {
   text-align: center;
   display: flex;
   align-items: center;
+  position: fixed;
   justify-content: center;
   bottom: 0;
 
@@ -15,7 +16,6 @@ footer {
     padding: 10px 0;
   }
 
-  @media (max-width: 1450px) {
-    position: fixed;
-  }
+
+  
 }

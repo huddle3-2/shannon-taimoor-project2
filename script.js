@@ -4,6 +4,8 @@ pokeApp.ulEl = document.querySelector(".displayPokemon");
 pokeApp.message = document.querySelector(".message");
 pokeApp.displayMoves = document.querySelector(".moves");
 pokeApp.button = document.querySelector(".button");
+pokeApp.startButton = document.querySelector(".startButton");
+pokeApp.startGameDiv = document.querySelector(".startGame");
 
 pokeApp.pokeCards = [];
 pokeApp.counter = 0;
@@ -80,10 +82,11 @@ pokeApp.createBoard = function (pokeCards) {
 
 // trigger difficulty level event listener
 pokeApp.events = function () {
-  document.querySelector("#difficulty").addEventListener("change", function () {
-    const userSelection = this.value;
-
+  document.querySelector("form").addEventListener("submit", function (e) {
+    e.preventDefault();
+    const userSelection = document.querySelector("#difficulty").value;
     console.log(userSelection);
+
     if (userSelection === "6") {
       console.log("we in the 6");
       pokeApp.ulEl.style.gridTemplateColumns = "repeat(4, 1fr)";
@@ -99,11 +102,8 @@ pokeApp.events = function () {
       pokeApp.ulEl.style.gridTemplateRows = "repeat(2, 1fr)";
     }
 
-    //(userSelection === 8)
-
-    //(userSelection === 10)
-
     pokeApp.fetchData(userSelection);
+    pokeApp.startGameDiv.style.display = "none";
     // pokeApp.ulEl.innerHTML = "";
   });
 };
@@ -230,6 +230,10 @@ pokeApp.handleButtonClick = () => {
   pokeApp.button.style.visibility = "hidden";
   pokeApp.displayMoves.textContent = "0";
   pokeApp.fetchData();
+};
+
+pokeApp.handleStartButtonClick = () => {
+  console.log("clicked");
 };
 
 pokeApp.init = () => {

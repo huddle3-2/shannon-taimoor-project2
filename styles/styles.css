@@ -67,6 +67,7 @@ main {
   border-width: 21px;
   border-style: solid;
   background-clip: padding-box;
+  position: relative;
 }
 .container .displayPokemon {
   width: 50%;
@@ -123,7 +124,7 @@ p {
 }
 
 .message {
-  visibility: visible;
+  visibility: hidden;
 }
 
 .appear {
@@ -164,6 +165,29 @@ p {
   color: #181010;
   -webkit-box-shadow: 1em 0em 0 #181010, 2em 0em 0 #181010, 1em 1em 0 #181010, 2em 1em 0 #181010, 3em 1em 0 #181010, 1em 2em 0 #181010, 2em 2em 0 #181010, 3em 2em 0 #181010, 4em 2em 0 #181010, 1em 3em 0 #181010, 2em 3em 0 #181010, 3em 3em 0 #181010, 4em 3em 0 #181010, 5em 3em 0 #181010, 1em 4em 0 #181010, 2em 4em 0 #181010, 3em 4em 0 #181010, 4em 4em 0 #181010, 1em 5em 0 #181010, 2em 5em 0 #181010, 3em 5em 0 #181010, 1em 6em 0 #181010, 2em 6em 0 #181010;
           box-shadow: 1em 0em 0 #181010, 2em 0em 0 #181010, 1em 1em 0 #181010, 2em 1em 0 #181010, 3em 1em 0 #181010, 1em 2em 0 #181010, 2em 2em 0 #181010, 3em 2em 0 #181010, 4em 2em 0 #181010, 1em 3em 0 #181010, 2em 3em 0 #181010, 3em 3em 0 #181010, 4em 3em 0 #181010, 5em 3em 0 #181010, 1em 4em 0 #181010, 2em 4em 0 #181010, 3em 4em 0 #181010, 4em 4em 0 #181010, 1em 5em 0 #181010, 2em 5em 0 #181010, 3em 5em 0 #181010, 1em 6em 0 #181010, 2em 6em 0 #181010;
+}
+
+.startGame {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  border: 1px solid red;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  background-color: #48a058;
+  z-index: 200;
 }
 
 @-webkit-keyframes disappear {

@@ -24,6 +24,20 @@
       <div class="wrapper">
         <div class="scoreBoard">
           <p>Moves:<span class="moves">0</span></p>
+        </div>
+      </div>
+      <div class="container">
+        <ul class="displayPokemon">
+          <!-- Render Pokemon Images here -->
+        </ul>
+        <p class="message">
+          <!-- Render Message -->
+        </p>
+        <div class="btnContainer">
+          <button class="button">Play Again?</button>
+        </div>
+        <div class="startGame">
+          <h3>Select your difficulty:</h3>
           <form action="">
             <label for="difficulty">Select your difficulty</label>
             <select name="difficulty" id="difficulty">
@@ -32,18 +46,8 @@
               <option value="8">16 Tiles</option>
               <option value="10">20 Tiles</option>
             </select>
+            <button type="submit" class="startButton">Start Game</button>
           </form>
-        </div>
-      </div>
-      <div class="container">
-        <ul class="displayPokemon">
-          <!-- Render Pokemon Images here -->
-        </ul>
-        <h2 class="message">
-          <!-- Render Message -->
-        </h2>
-        <div class="btnContainer">
-          <button class="button">Play Again?</button>
         </div>
       </div>
     </main>

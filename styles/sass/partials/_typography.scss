@@ -1,6 +1,22 @@
 @font-face {
   font-family: "Pokemon GB";
   src: url("../fonts/PokemonGB/PokemonGb.ttf");
-
   font-weight: normal;
+}
+
+.startGame{
+  font-family: $pokemonGB;
+}
+
+h2 {
+  font-family: $pokemonGB;
+  font-size: 1rem;
+}
+
+p {
+  font-family: $pokemonGB;
+}
+
+h3{
+  font-family: $pokemonGB;
 }

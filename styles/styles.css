@@ -1,10 +1,27 @@
+html {
+  font-size: 125%;
+}
+
 @font-face {
   font-family: "Pokemon GB";
   src: url("../fonts/PokemonGB/PokemonGb.ttf");
   font-weight: normal;
 }
-html {
-  font-size: 125%;
+.startGame {
+  font-family: "Pokemon GB";
+}
+
+h2 {
+  font-family: "Pokemon GB";
+  font-size: 1rem;
+}
+
+p {
+  font-family: "Pokemon GB";
+}
+
+h3 {
+  font-family: "Pokemon GB";
 }
 
 h1 {
@@ -31,7 +48,10 @@ main {
   display: -ms-flexbox;
   display: flex;
   padding-left: 20px;
-  background-color: #48a058;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  background-color: #536fe1;
   color: #f8f3f8;
   text-shadow: -1px -1px 0 #181010, 1px -1px 0 #181010, -1px 1px 0 #181010, 1px 1px 0 #181010;
 }
@@ -56,11 +76,12 @@ main {
           flex-direction: column;
   max-width: 1280px;
   width: 80%;
+  max-height: 50vh;
   margin: 0 auto;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding: 50px 0;
+  padding: 0 0 20px;
   background-color: rgba(248, 243, 248, 0.5);
   -o-border-image: url("../assets/frame.png") 42 round;
      border-image: url("../assets/frame.png") 42 round;
@@ -71,17 +92,20 @@ main {
 }
 .container .displayPokemon {
   width: 50%;
+  border: 2px red solid;
   min-width: 250px;
   max-width: 1280px;
-  margin: 0 auto 20px;
+  max-height: 50%;
+  margin: 10px auto 0px;
   display: grid;
   gap: 10px;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(2, 1fr);
+  grid-template-columns: repeat(5, 25%);
+  grid-template-rows: repeat(2, 50%);
   list-style: none;
   padding: 0;
 }
 .container .displayPokemon li {
+  border: 2px blue solid;
   position: relative;
   width: 100%;
   height: 100%;
@@ -89,12 +113,12 @@ main {
 }
 .container .displayPokemon .back {
   width: 100%;
-  height: 100%;
+  height: 100px;
   position: absolute;
   top: 0;
 }
 .container .displayPokemon .back img {
-  margin-top: 20px;
+  margin: auto;
   background-color: bisque;
   border-radius: 50%;
 }
@@ -112,15 +136,6 @@ main {
 }
 .container .displayPokemon img {
   width: 100%;
-}
-
-h2 {
-  font-family: "Pokemon GB";
-  font-size: 1rem;
-}
-
-p {
-  font-family: "Pokemon GB";
 }
 
 .message {
@@ -172,7 +187,6 @@ p {
   width: 100%;
   height: 100%;
   top: 0;
-  border: 1px solid red;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -186,7 +200,7 @@ p {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  background-color: #48a058;
+  background-color: rgba(248, 243, 248, 0);
   z-index: 200;
 }
 
@@ -253,30 +267,94 @@ p {
 }
 @-webkit-keyframes bounce {
   0% {
-    -webkit-transform: translateY(0px);
-            transform: translateY(0px);
+    -webkit-transform: translate(1px, 1px) rotate(0deg);
+            transform: translate(1px, 1px) rotate(0deg);
+  }
+  10% {
+    -webkit-transform: translate(-1px, -2px) rotate(-1deg);
+            transform: translate(-1px, -2px) rotate(-1deg);
+  }
+  20% {
+    -webkit-transform: translate(-3px, 0px) rotate(1deg);
+            transform: translate(-3px, 0px) rotate(1deg);
+  }
+  30% {
+    -webkit-transform: translate(3px, 2px) rotate(0deg);
+            transform: translate(3px, 2px) rotate(0deg);
+  }
+  40% {
+    -webkit-transform: translate(1px, -1px) rotate(1deg);
+            transform: translate(1px, -1px) rotate(1deg);
   }
   50% {
-    -webkit-transform: translateY(-20px);
-            transform: translateY(-20px);
+    -webkit-transform: translate(-1px, 2px) rotate(-1deg);
+            transform: translate(-1px, 2px) rotate(-1deg);
+  }
+  60% {
+    -webkit-transform: translate(-3px, 1px) rotate(0deg);
+            transform: translate(-3px, 1px) rotate(0deg);
+  }
+  70% {
+    -webkit-transform: translate(3px, 1px) rotate(-1deg);
+            transform: translate(3px, 1px) rotate(-1deg);
+  }
+  80% {
+    -webkit-transform: translate(-1px, -1px) rotate(1deg);
+            transform: translate(-1px, -1px) rotate(1deg);
+  }
+  90% {
+    -webkit-transform: translate(1px, 2px) rotate(0deg);
+            transform: translate(1px, 2px) rotate(0deg);
   }
   100% {
-    -webkit-transform: translateY(0px);
-            transform: translateY(0px);
+    -webkit-transform: translate(1px, -2px) rotate(-1deg);
+            transform: translate(1px, -2px) rotate(-1deg);
   }
 }
 @keyframes bounce {
   0% {
-    -webkit-transform: translateY(0px);
-            transform: translateY(0px);
+    -webkit-transform: translate(1px, 1px) rotate(0deg);
+            transform: translate(1px, 1px) rotate(0deg);
+  }
+  10% {
+    -webkit-transform: translate(-1px, -2px) rotate(-1deg);
+            transform: translate(-1px, -2px) rotate(-1deg);
+  }
+  20% {
+    -webkit-transform: translate(-3px, 0px) rotate(1deg);
+            transform: translate(-3px, 0px) rotate(1deg);
+  }
+  30% {
+    -webkit-transform: translate(3px, 2px) rotate(0deg);
+            transform: translate(3px, 2px) rotate(0deg);
+  }
+  40% {
+    -webkit-transform: translate(1px, -1px) rotate(1deg);
+            transform: translate(1px, -1px) rotate(1deg);
   }
   50% {
-    -webkit-transform: translateY(-20px);
-            transform: translateY(-20px);
+    -webkit-transform: translate(-1px, 2px) rotate(-1deg);
+            transform: translate(-1px, 2px) rotate(-1deg);
+  }
+  60% {
+    -webkit-transform: translate(-3px, 1px) rotate(0deg);
+            transform: translate(-3px, 1px) rotate(0deg);
+  }
+  70% {
+    -webkit-transform: translate(3px, 1px) rotate(-1deg);
+            transform: translate(3px, 1px) rotate(-1deg);
+  }
+  80% {
+    -webkit-transform: translate(-1px, -1px) rotate(1deg);
+            transform: translate(-1px, -1px) rotate(1deg);
+  }
+  90% {
+    -webkit-transform: translate(1px, 2px) rotate(0deg);
+            transform: translate(1px, 2px) rotate(0deg);
   }
   100% {
-    -webkit-transform: translateY(0px);
-            transform: translateY(0px);
+    -webkit-transform: translate(1px, -2px) rotate(-1deg);
+            transform: translate(1px, -2px) rotate(-1deg);
   }
 }
 footer {

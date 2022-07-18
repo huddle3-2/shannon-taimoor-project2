@@ -83,7 +83,6 @@ main {
     .front {
       position: relative;
       z-index: 100;
-      // transform:translateY(0);
 
       &:hover {
         animation: bounce 1s infinite;
@@ -171,6 +170,13 @@ p {
   from {
     transform: rotateY(180deg);
     opacity: 0;
+  }
+}
+
+@keyframes flipBack {
+  from {
+    transform: rotateY(90deg);
+    opacity: 1;
   }
 }
 

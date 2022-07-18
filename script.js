@@ -150,7 +150,7 @@ pokeApp.addClickSetup = () => {
         pokeApp.choice = e.target.parentNode.nextSibling.firstChild;
 
         // pokeApp.choiceParent.style.animation = "flip 0.5s linear 10s";
-
+        pokeApp.choiceParent.style.animation = "";
         pokeApp.choiceParent.classList.add("hide");
         pokeApp.choiceParent.style.zIndex = "0";
 
@@ -200,6 +200,8 @@ pokeApp.checkMatch = () => {
             // pokeApp.choiceParent.style.zIndex = "10";
             card.classList.remove("flipped");
             card.parentElement.previousSibling.classList.remove("hide");
+            card.parentElement.previousSibling.style.animation =
+              "flipBack 0.1s linear";
             card.parentElement.previousSibling.style.zIndex = "10";
           }
         });

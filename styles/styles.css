@@ -8,8 +8,9 @@ html {
 }
 
 h1 {
-  font-family: "VT323", monospace;
+  font-family: "Pokemon GB";
   text-align: center;
+  font-size: 1.6rem;
 }
 
 body {
@@ -200,6 +201,20 @@ p {
     -webkit-transform: rotateY(180deg);
             transform: rotateY(180deg);
     opacity: 0;
+  }
+}
+@-webkit-keyframes flipBack {
+  from {
+    -webkit-transform: rotateY(90deg);
+            transform: rotateY(90deg);
+    opacity: 1;
+  }
+}
+@keyframes flipBack {
+  from {
+    -webkit-transform: rotateY(90deg);
+            transform: rotateY(90deg);
+    opacity: 1;
   }
 }
 @-webkit-keyframes appear {

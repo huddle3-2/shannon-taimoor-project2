@@ -48,7 +48,7 @@ main {
     width: 50%;
     min-width: 250px;
     max-width: 1280px;
-    margin: 0 auto;
+    margin: 0 auto 20px;
     // border:2px orange solid;
     display: grid;
     gap: 10px;
@@ -99,8 +99,8 @@ main {
 }
 
 h2 {
-  font-family: $poppins;
-  margin: 10px 0 0 0;
+  font-family: $pokemonGB;
+  font-size: 1rem;
 }
 
 p {
@@ -108,7 +108,7 @@ p {
 }
 
 .message {
-  visibility: hidden;
+  visibility: visible;
 }
 .appear {
   visibility: visible;
@@ -119,8 +119,8 @@ p {
 }
 
 .hide {
-  opacity:0;
-  animation:disappear 0.4s, flip 1s;
+  opacity: 0;
+  animation: disappear 0.4s, flip 1s;
 }
 
 .button {
@@ -155,15 +155,15 @@ p {
 
 // disappear animation
 
-@keyframes disappear{
-  0%{
-    opacity:1;
+@keyframes disappear {
+  0% {
+    opacity: 1;
   }
-  50%{
-    opacity:0.5;
+  50% {
+    opacity: 0.5;
   }
-  100%{
-    opacity:0;
+  100% {
+    opacity: 0;
   }
 }
 // flip animation

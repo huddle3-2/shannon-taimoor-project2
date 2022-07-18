@@ -186,9 +186,12 @@ pokeApp.checkMatch = () => {
         flippedCards[0].classList.add("matched");
         flippedCards[1].classList.add("matched");
         pokeApp.counter = 0;
-        pokeApp.message.classList.remove("appear");
         pokeApp.checkGame();
       }, 1000);
+
+      setTimeout(() => {
+        pokeApp.message.classList.remove("appear");
+      }, 1500);
     } else {
       setTimeout(() => {
         flippedCards.forEach((card) => {

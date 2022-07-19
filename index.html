@@ -28,35 +28,47 @@
           <p>Moves:<span class="moves">0</span></p>
           <p>Round:<span class="round">1</span></p>
         </div>
-      </div>
-      <div class="container">
-        <p class="message">
-          <!-- Render Message -->
-        </p>
-        <ul class="displayPokemon">
-          <!-- Render Pokemon Images here -->
-        </ul>
+        <div class="container">
+          <p class="message">
+            <!-- Render Message -->
+          </p>
+          <ul class="displayPokemon">
+            <!-- Render Pokemon Images here -->
+          </ul>
 
-        <div class="btnContainer">
-          <button class="button" id="playAgain">Play Again?</button>
+          <div class="btnContainer">
+            <button class="button" id="playAgain">Play Again?</button>
+          </div>
+          <div class="startGame">
+            <h3>Gotta Match 'Em All</h3>
+            <form action="">
+              <label for="difficulty">Select your difficulty</label>
+              <fieldset name="difficulty" class="difficulty" id="difficulty">
+                <div class="tileSelection">
+                  <input type="radio" value="5" id="5" name="tiles" />
+                  <label for="5">10 tiles</label>
+                </div>
+                <div class="tileSelection">
+                  <input type="radio" value="6" id="6" name="tiles" />
+                  <label for="6">12 tiles</label>
+                </div>
+                <div class="tileSelection">
+                  <input type="radio" value="8" id="8" name="tiles" />
+                  <label for="8">16 tiles</label>
+                </div>
+                <div class="tileSelection">
+                  <input type="radio" value="10" id="10" name="tiles" />
+                  <label for="10">20 tiles</label>
+                </div>
+              </fieldset>
+              <button type="submit" class="startButton">Start Game</button>
+            </form>
+          </div>
         </div>
-        <div class="startGame">
-          <h3>Gotta Match 'Em All</h3>
-          <form action="">
-            <label for="difficulty">Select your difficulty</label>
-            <select name="difficulty" id="difficulty">
-              <option value="5">10 Tiles</option>
-              <option value="6">12 Tiles</option>
-              <option value="8">16 Tiles</option>
-              <option value="10">20 Tiles</option>
-            </select>
-            <button type="submit" class="startButton">Start Game</button>
-          </form>
-        </div>
+        <button class="button musicButton" id="musicButton">
+          Music: <span id="audioControl">OFF</span>
+        </button>
       </div>
-      <button class="button musicButton" id="musicButton">
-        Music: <span id="audioControl">OFF</span>
-      </button>
     </main>
     <!-- MAIN ENDS -->
     <!-- FOOTER STARTS -->

@@ -47,23 +47,25 @@ main {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  padding-left: 20px;
   -webkit-box-pack: space-evenly;
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
   background-color: #536fe1;
+  width: 80%;
+  margin: 0 auto;
   color: #f8f3f8;
+  -o-border-image: url("../assets/frame.png") 42 round;
+     border-image: url("../assets/frame.png") 42 round;
+  background-clip: padding-box;
+  border-width: 21px;
+  border-style: solid;
   text-shadow: -1px -1px 0 #181010, 1px -1px 0 #181010, -1px 1px 0 #181010, 1px 1px 0 #181010;
 }
 
 .wrapper {
   max-width: 1280px;
-  width: 80%;
+  width: 50%;
   margin: 0 auto;
-  -o-border-image: url("../assets/frame.png") 42 round;
-     border-image: url("../assets/frame.png") 42 round;
-  border-width: 21px;
-  border-style: solid;
 }
 
 .container {
@@ -92,7 +94,7 @@ main {
   position: relative;
 }
 .container .displayPokemon {
-  width: 50%;
+  width: 60%;
   min-width: 250px;
   max-width: 1280px;
   max-height: 50%;
@@ -221,6 +223,7 @@ main {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  text-align: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -230,6 +233,43 @@ main {
           flex-direction: column;
   background-color: rgba(248, 243, 248, 0);
   z-index: 200;
+}
+.startGame form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+.startGame .difficulty {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  border: none;
+}
+.startGame input, .startGame label {
+  cursor: pointer;
+}
+.startGame .startButton {
+  font-family: "Pokemon GB";
+  border: none;
+  width: 60%;
+  margin: 0 auto;
+  padding: 10px 20px;
+  background-color: #536fe1;
+  color: white;
+  -webkit-transition: background-color 0.3s;
+  transition: background-color 0.3s;
+  cursor: pointer;
+}
+.startGame .startButton:hover, .startGame .startButton:focus {
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 @-webkit-keyframes disappear {

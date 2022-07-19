@@ -13,21 +13,24 @@ main {
 
 .scoreBoard {
   display: flex;
-  padding-left: 20px;
   justify-content: space-evenly;
   background-color: $blue;
+  width: 80%;
+  margin:0 auto;
   color: #f8f3f8;
+  border-image: url("../assets/frame.png") 42 round;
+  background-clip: padding-box;
+  border-width: 21px;
+  border-style: solid;
   text-shadow: -1px -1px 0 #181010, 1px -1px 0 #181010, -1px 1px 0 #181010,
     1px 1px 0 #181010;
 }
 
 .wrapper {
   max-width: 1280px;
-  width: 80%;
+  width: 50%;
   margin: 0 auto;
-  border-image: url("../assets/frame.png") 42 round;
-  border-width: 21px;
-  border-style: solid;
+
 }
 
 .container {
@@ -49,7 +52,7 @@ main {
   position: relative;
 
   .displayPokemon {
-    width: 50%;
+    width: 60%;
     min-width: 250px;
     max-width: 1280px;
     max-height: 50%;
@@ -171,10 +174,42 @@ main {
   top: 0;
   display: flex;
   justify-content: center;
+  text-align:center;
   align-items: center;
   flex-direction: column;
   background-color: rgba($color: #f8f3f8, $alpha: 0);
   z-index: 200;
+
+  form{
+    display:flex;
+    flex-direction:column;
+  }
+  .difficulty{
+    display:flex;
+    flex-direction:column;
+    border:none;
+    
+  }
+
+  input, label{
+    cursor: pointer;
+  }
+
+  .startButton{
+    font-family:$pokemonGB;
+    border:none;
+    width:60%;
+    margin:0 auto;
+    padding:10px 20px;
+    background-color:$blue;
+    color:white;
+    transition:background-color 0.3s;
+    cursor: pointer;
+
+    &:hover, &:focus{
+      background-color:rgba($color:black,$alpha:0.5);
+    }
+  }
 }
 
 // disappear animation

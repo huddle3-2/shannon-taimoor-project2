@@ -1,7 +1,9 @@
-//Background Audio
-const bgMusic = new Audio("./audio/pokemon-bg.mp3");
-
 const pokeApp = {};
+
+//Background Audio Setup
+pokeApp.bgMusic = new Audio("./audio/pokemon-bg.mp3");
+pokeApp.bgMusic.loop = true;
+pokeApp.bgMusic.volume = 0.3;
 
 pokeApp.ulEl = document.querySelector(".displayPokemon");
 pokeApp.message = document.querySelector(".message");
@@ -244,18 +246,16 @@ pokeApp.handleButtonClick = () => {
 pokeApp.handleMusicClick = () => {
   const audio = document.querySelector("#audioControl");
   if (audio.textContent === "ON") {
-    bgMusic.pause();
+    pokeApp.bgMusic.pause();
     audio.textContent = "OFF";
   } else {
-    bgMusic.play();
+    pokeApp.bgMusic.play();
     audio.textContent = "ON";
   }
 };
 
 pokeApp.init = () => {
   pokeApp.events();
-  console.log(bgMusic);
-  bgMusic.play();
 };
 
 pokeApp.init();

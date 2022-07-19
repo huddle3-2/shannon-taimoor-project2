@@ -4,6 +4,10 @@ const pokeApp = {};
 pokeApp.bgMusic = new Audio("./audio/pokemon-bg.mp3");
 pokeApp.bgMusic.loop = true;
 pokeApp.bgMusic.volume = 0.3;
+pokeApp.flipSound = new Audio("./audio/flip.mp3");
+pokeApp.flipSound.volume = 0.3;
+pokeApp.matchSound = new Audio("./audio/match.mp3");
+pokeApp.matchSound.volume = 0.3;
 
 pokeApp.ulEl = document.querySelector(".displayPokemon");
 pokeApp.message = document.querySelector(".message");
@@ -150,6 +154,8 @@ pokeApp.addClickSetup = () => {
       pokeApp.counter++;
 
       if (pokeApp.counter <= 2) {
+        pokeApp.flipSound.load();
+        pokeApp.flipSound.play();
         // put target parent into variable and add class of flipped
         pokeApp.choiceParent = e.target.parentNode;
         pokeApp.choice = e.target.parentNode.nextSibling.firstChild;
@@ -182,6 +188,7 @@ pokeApp.checkMatch = () => {
   if (pokeApp.counter === 2) {
     const flippedCards = document.querySelectorAll(".flipped:not(.matched)");
     if (flippedCards[0].alt === flippedCards[1].alt) {
+      pokeApp.matchSound.play();
       // display message for players if they matched a card
       pokeApp.message.textContent = "It's a match!";
       pokeApp.message.classList.add("appear");

@@ -1,12 +1,16 @@
+//Background Audio
+const bgMusic = new Audio("./audio/pokemon-bg.mp3");
+
 const pokeApp = {};
 
 pokeApp.ulEl = document.querySelector(".displayPokemon");
 pokeApp.message = document.querySelector(".message");
 pokeApp.displayMoves = document.querySelector(".moves");
-pokeApp.button = document.querySelector(".button");
+pokeApp.button = document.querySelector("#playAgain");
 pokeApp.startButton = document.querySelector(".startButton");
 pokeApp.startGameDiv = document.querySelector(".startGame");
 pokeApp.displayRounds = document.querySelector(".round");
+pokeApp.musicButton = document.querySelector("#musicButton");
 
 pokeApp.pokeCards = [];
 pokeApp.counter = 0;
@@ -30,14 +34,10 @@ pokeApp.fetchData = (userSelection) => {
 
   fetch(url)
     .then(function (data) {
-      console.log(url);
-      console.log(data);
       return data.json();
     })
     .then(function (results) {
       // for each loop
-
-      console.log(results);
       results.results.forEach((item) => {
         pokeApp.pokeCards.push({
           url: item.url,
@@ -87,7 +87,6 @@ pokeApp.events = function () {
   document.querySelector("form").addEventListener("submit", function (e) {
     e.preventDefault();
     const userSelection = document.querySelector("#difficulty").value;
-    console.log(userSelection);
 
     if (userSelection === "6") {
       console.log("we in the 6");
@@ -107,8 +106,9 @@ pokeApp.events = function () {
 
     pokeApp.fetchData(userSelection);
     pokeApp.startGameDiv.style.display = "none";
-    // pokeApp.ulEl.innerHTML = "";
   });
+  //add listener for audio
+  pokeApp.musicButton.addEventListener("click", pokeApp.handleMusicClick);
 };
 
 //shuffle fetched data
@@ -189,11 +189,11 @@ pokeApp.checkMatch = () => {
         flippedCards[0].classList.add("matched");
         flippedCards[1].classList.add("matched");
         pokeApp.counter = 0;
-        pokeApp.checkGame();
       }, 1000);
 
       setTimeout(() => {
         pokeApp.message.classList.remove("appear");
+        pokeApp.checkGame();
       }, 1500);
     } else {
       setTimeout(() => {
@@ -214,6 +214,7 @@ pokeApp.checkMatch = () => {
   }
 };
 
+//Checks to see if game has been completed
 pokeApp.checkGame = () => {
   const matchedCards = document.querySelectorAll(".matched");
 
@@ -224,6 +225,7 @@ pokeApp.checkGame = () => {
   }
 };
 
+//Handle Play Again button click
 pokeApp.handleButtonClick = () => {
   pokeApp.ulEl.innerHTML = "";
   pokeApp.pokeCards = [];
@@ -238,13 +240,22 @@ pokeApp.handleButtonClick = () => {
   pokeApp.displayRounds.textContent = pokeApp.rounds;
 };
 
-pokeApp.handleStartButtonClick = () => {
-  console.log("clicked");
+//Handle music button click
+pokeApp.handleMusicClick = () => {
+  const audio = document.querySelector("#audioControl");
+  if (audio.textContent === "ON") {
+    bgMusic.pause();
+    audio.textContent = "OFF";
+  } else {
+    bgMusic.play();
+    audio.textContent = "ON";
+  }
 };
 
 pokeApp.init = () => {
-  // pokeApp.fetchData("5");
   pokeApp.events();
+  console.log(bgMusic);
+  bgMusic.play();
 };
 
 pokeApp.init();

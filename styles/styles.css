@@ -93,7 +93,6 @@ main {
 }
 .container .displayPokemon {
   width: 50%;
-  border: 2px red solid;
   min-width: 250px;
   max-width: 1280px;
   max-height: 50%;
@@ -122,10 +121,33 @@ main {
   margin: auto;
   background-color: bisque;
   border-radius: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+@media (max-height: 600px) {
+  .container .displayPokemon .back img {
+    height: 70px;
+  }
 }
 .container .displayPokemon .front {
   position: relative;
   z-index: 100;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 .container .displayPokemon .front:hover {
   -webkit-animation: bounce 1s infinite;
@@ -181,6 +203,12 @@ main {
   color: #181010;
   -webkit-box-shadow: 1em 0em 0 #181010, 2em 0em 0 #181010, 1em 1em 0 #181010, 2em 1em 0 #181010, 3em 1em 0 #181010, 1em 2em 0 #181010, 2em 2em 0 #181010, 3em 2em 0 #181010, 4em 2em 0 #181010, 1em 3em 0 #181010, 2em 3em 0 #181010, 3em 3em 0 #181010, 4em 3em 0 #181010, 5em 3em 0 #181010, 1em 4em 0 #181010, 2em 4em 0 #181010, 3em 4em 0 #181010, 4em 4em 0 #181010, 1em 5em 0 #181010, 2em 5em 0 #181010, 3em 5em 0 #181010, 1em 6em 0 #181010, 2em 6em 0 #181010;
           box-shadow: 1em 0em 0 #181010, 2em 0em 0 #181010, 1em 1em 0 #181010, 2em 1em 0 #181010, 3em 1em 0 #181010, 1em 2em 0 #181010, 2em 2em 0 #181010, 3em 2em 0 #181010, 4em 2em 0 #181010, 1em 3em 0 #181010, 2em 3em 0 #181010, 3em 3em 0 #181010, 4em 3em 0 #181010, 5em 3em 0 #181010, 1em 4em 0 #181010, 2em 4em 0 #181010, 3em 4em 0 #181010, 4em 4em 0 #181010, 1em 5em 0 #181010, 2em 5em 0 #181010, 3em 5em 0 #181010, 1em 6em 0 #181010, 2em 6em 0 #181010;
+}
+
+.musicButton {
+  visibility: visible;
+  display: block;
+  margin: 20px auto 0;
 }
 
 .startGame {

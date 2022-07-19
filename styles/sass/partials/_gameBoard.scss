@@ -14,7 +14,7 @@ main {
 .scoreBoard {
   display: flex;
   padding-left: 20px;
-  justify-content:space-evenly;
+  justify-content: space-evenly;
   background-color: $blue;
   color: #f8f3f8;
   text-shadow: -1px -1px 0 #181010, 1px -1px 0 #181010, -1px 1px 0 #181010,
@@ -35,8 +35,8 @@ main {
   flex-direction: column;
   max-width: 1280px;
   width: 80%;
-  max-height:50vh;
-  min-height:30vh;
+  max-height: 50vh;
+  min-height: 30vh;
   margin: 0 auto;
   align-items: center;
   padding: 0 0 20px;
@@ -50,10 +50,9 @@ main {
 
   .displayPokemon {
     width: 50%;
-    border:2px red solid;
     min-width: 250px;
     max-width: 1280px;
-    max-height:50%;
+    max-height: 50%;
     margin: 10px auto 0px;
     // border:2px orange solid;
     display: grid;
@@ -64,7 +63,7 @@ main {
     padding: 0;
 
     li {
-      border:2px blue solid;
+      border: 2px blue solid;
       position: relative;
       width: 100%;
       height: 100%;
@@ -80,9 +79,16 @@ main {
       top: 0;
 
       img {
-        margin:auto;
+        margin: auto;
         background-color: bisque;
         border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        @media (max-height: 600px) {
+          height: 70px;
+        }
       }
     }
 
@@ -90,6 +96,9 @@ main {
     .front {
       position: relative;
       z-index: 100;
+      display: flex;
+      justify-content: center;
+      align-items: center;
 
       &:hover {
         animation: bounce 1s infinite;
@@ -103,8 +112,6 @@ main {
     }
   }
 }
-
-
 
 .message {
   visibility: hidden;
@@ -150,6 +157,12 @@ main {
       2em 4em 0 #181010, 3em 4em 0 #181010, 4em 4em 0 #181010, 1em 5em 0 #181010,
       2em 5em 0 #181010, 3em 5em 0 #181010, 1em 6em 0 #181010, 2em 6em 0 #181010;
   }
+}
+
+.musicButton {
+  visibility: visible;
+  display: block;
+  margin: 20px auto 0;
 }
 
 .startGame {
@@ -203,15 +216,37 @@ main {
 // bounce animation
 
 @keyframes bounce {
-  0% { transform: translate(1px, 1px) rotate(0deg); }
-  10% { transform: translate(-1px, -2px) rotate(-1deg); }
-  20% { transform: translate(-3px, 0px) rotate(1deg); }
-  30% { transform: translate(3px, 2px) rotate(0deg); }
-  40% { transform: translate(1px, -1px) rotate(1deg); }
-  50% { transform: translate(-1px, 2px) rotate(-1deg); }
-  60% { transform: translate(-3px, 1px) rotate(0deg); }
-  70% { transform: translate(3px, 1px) rotate(-1deg); }
-  80% { transform: translate(-1px, -1px) rotate(1deg); }
-  90% { transform: translate(1px, 2px) rotate(0deg); }
-  100% { transform: translate(1px, -2px) rotate(-1deg); }
+  0% {
+    transform: translate(1px, 1px) rotate(0deg);
+  }
+  10% {
+    transform: translate(-1px, -2px) rotate(-1deg);
+  }
+  20% {
+    transform: translate(-3px, 0px) rotate(1deg);
+  }
+  30% {
+    transform: translate(3px, 2px) rotate(0deg);
+  }
+  40% {
+    transform: translate(1px, -1px) rotate(1deg);
+  }
+  50% {
+    transform: translate(-1px, 2px) rotate(-1deg);
+  }
+  60% {
+    transform: translate(-3px, 1px) rotate(0deg);
+  }
+  70% {
+    transform: translate(3px, 1px) rotate(-1deg);
+  }
+  80% {
+    transform: translate(-1px, -1px) rotate(1deg);
+  }
+  90% {
+    transform: translate(1px, 2px) rotate(0deg);
+  }
+  100% {
+    transform: translate(1px, -2px) rotate(-1deg);
+  }
 }

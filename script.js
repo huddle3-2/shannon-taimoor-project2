@@ -29,68 +29,58 @@ pokeApp.rounds = 1;
 
 // Fetch Pokemon Data using API, add url and name into an array
 pokeApp.fetchData = (userSelection) => {
-  const url = new URL("https://pokeapi.co/api/v2/pokemon");
+  const url = new URL("https://pokeapi.co/api/v2/pokemon/");
 
-  url.search = new URLSearchParams({
-    limit: userSelection,
-    offset: pokeApp.randomizer(),
-  });
+  const pokeNumbers = pokeApp.randomizer(userSelection);
 
   pokeApp.ulEl.innerHTML = "";
   pokeApp.pokeCards = [];
 
-  fetch(url)
-    .then(function (data) {
-      return data.json();
-    })
-    .then(function (results) {
-      // for each loop
-      results.results.forEach((item) => {
+  pokeNumbers.forEach((pokeNum) => {
+    fetch(`${url}${pokeNum}`)
+      .then(function (data) {
+        return data.json();
+      })
+      .then(function (result) {
         pokeApp.pokeCards.push({
-          url: item.url,
-          name: item.name,
+          name: result.name,
+          imgUrl: result.sprites.front_default,
         });
+
+        pokeApp.createBoard(pokeApp.pokeCards);
       });
-    })
-    .then(function () {
-      pokeApp.duplicateCards();
-      pokeApp.shufflePokeCards();
-      pokeApp.createBoard(pokeApp.pokeCards);
-    });
+  });
 };
 
-pokeApp.randomizer = function () {
-  pokeApp.offset = Math.floor(Math.random() * (1000 - 10));
-  return pokeApp.offset;
+pokeApp.randomizer = function (userSelection) {
+  const newArray = [];
+
+  for (let i = 0; i < userSelection; i++) {
+    const randomNum = Math.floor(Math.random() * 898);
+    newArray.push(randomNum);
+  }
+  return newArray;
 };
 
 // fetch ANOTHER set of data using the URL we just received from the first API
 pokeApp.createBoard = function (pokeCards) {
   pokeApp.ulEl.innerHTML = "";
+  pokeCards = pokeApp.duplicateCards(pokeCards);
+  pokeCards = pokeApp.shufflePokeCards(pokeCards);
   pokeCards.forEach((card) => {
-    fetch(card.url)
-      .then(function (data) {
-        return data.json();
-      })
-      .then(function (result) {
-        card.imgUrl = result.sprites.front_default;
-      })
-      .then(function () {
-        pokeApp.newLi = document.createElement("li");
-        pokeApp.backDiv = document.createElement("div");
-        pokeApp.frontDiv = document.createElement("div");
+    pokeApp.newLi = document.createElement("li");
+    pokeApp.backDiv = document.createElement("div");
+    pokeApp.frontDiv = document.createElement("div");
 
-        pokeApp.frontDiv.classList.add("front");
-        pokeApp.backDiv.classList.add("back");
+    pokeApp.frontDiv.classList.add("front");
+    pokeApp.backDiv.classList.add("back");
 
-        pokeApp.frontDiv.innerHTML = `<img src="./assets/back-card.png" draggable="false"/>`;
-        pokeApp.backDiv.innerHTML = `<img src=${card.imgUrl} alt=${card.name}>`;
-        pokeApp.newLi.append(pokeApp.frontDiv, pokeApp.backDiv);
-        pokeApp.ulEl.appendChild(pokeApp.newLi);
-
-        // call function for eventListener
-        pokeApp.addClickSetup();
-      });
+    pokeApp.frontDiv.innerHTML = `<img src="./assets/back-card.png" draggable="false"/>`;
+    pokeApp.backDiv.innerHTML = `<img src=${card.imgUrl} alt=${card.name}>`;
+    pokeApp.newLi.append(pokeApp.frontDiv, pokeApp.backDiv);
+    pokeApp.ulEl.appendChild(pokeApp.newLi);
+    // call function for eventListener
+    pokeApp.addClickSetup();
   });
 };
 
@@ -123,32 +113,35 @@ pokeApp.events = function () {
 };
 
 //shuffle fetched data
-pokeApp.shufflePokeCards = () => {
+pokeApp.shufflePokeCards = (array) => {
+  const copyArray = [...array];
   //loop through pokeCards array
-  for (let i = pokeApp.pokeCards.length - 1; i > 0; i--) {
+  for (let i = copyArray.length - 1; i > 0; i--) {
     //assign random index from 1 to length of pokeCards array
     const randomIndex = Math.floor(Math.random() * (i + 1));
-    const originalValue = pokeApp.pokeCards[i];
 
     //replace original value with value at random index
-    pokeApp.pokeCards[i] = pokeApp.pokeCards[randomIndex];
-    //replace value at random index with original
-    pokeApp.pokeCards[randomIndex] = originalValue;
+    [copyArray[i], copyArray[randomIndex]] = [
+      copyArray[randomIndex],
+      copyArray[i],
+    ];
   }
+
+  return copyArray;
 };
 
 //duplicate pokeCards array
-pokeApp.duplicateCards = () => {
+pokeApp.duplicateCards = (array) => {
   const newArray = [];
 
   //push each element from pokeCards to newArray twice
-  pokeApp.pokeCards.forEach((card) => {
+  array.forEach((card) => {
     newArray.push(card);
     newArray.push(card);
   });
 
   //assign newArray to pokeCards array
-  pokeApp.pokeCards = newArray;
+  return newArray;
 };
 // setup Event Listener
 pokeApp.addClickSetup = () => {
@@ -187,6 +180,8 @@ pokeApp.addClickSetup = () => {
     }
   });
 };
+
+//fetch images
 
 //Check match
 pokeApp.checkMatch = () => {
@@ -230,8 +225,7 @@ pokeApp.checkMatch = () => {
 //Checks to see if game has been completed
 pokeApp.checkGame = () => {
   const matchedCards = document.querySelectorAll(".matched");
-
-  if (matchedCards.length === pokeApp.pokeCards.length) {
+  if (matchedCards.length === pokeApp.pokeCards.length * 2) {
     pokeApp.message.textContent = "You win the game!";
     pokeApp.message.classList.add("appear");
     pokeApp.button.style.visibility = "visible";
@@ -248,7 +242,6 @@ pokeApp.handleButtonClick = () => {
   pokeApp.button.style.visibility = "hidden";
   pokeApp.displayMoves.textContent = "0";
   pokeApp.startGameDiv.style.display = "flex";
-  // pokeApp.fetchData();
   pokeApp.rounds++;
   pokeApp.displayRounds.textContent = pokeApp.rounds;
 };
@@ -267,7 +260,6 @@ pokeApp.handleMusicClick = () => {
 
 pokeApp.init = () => {
   pokeApp.events();
-  pokeApp.randomizer();
 };
 
 pokeApp.init();

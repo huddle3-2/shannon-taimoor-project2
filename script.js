@@ -193,6 +193,7 @@ pokeApp.checkMatch = () => {
   if (pokeApp.counter === 2) {
     const flippedCards = document.querySelectorAll(".flipped:not(.matched)");
     if (flippedCards[0].alt === flippedCards[1].alt) {
+      pokeApp.matchSound.load();
       pokeApp.matchSound.play();
       // display message for players if they matched a card
       pokeApp.message.textContent = "It's a match!";

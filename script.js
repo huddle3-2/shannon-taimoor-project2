@@ -33,6 +33,7 @@ pokeApp.fetchData = (userSelection) => {
 
   url.search = new URLSearchParams({
     limit: userSelection,
+    offset: pokeApp.randomizer(),
   });
 
   pokeApp.ulEl.innerHTML = "";
@@ -56,6 +57,11 @@ pokeApp.fetchData = (userSelection) => {
       pokeApp.shufflePokeCards();
       pokeApp.createBoard(pokeApp.pokeCards);
     });
+};
+
+pokeApp.randomizer = function () {
+  pokeApp.offset = Math.floor(Math.random() * (1000 - 10));
+  return pokeApp.offset;
 };
 
 // fetch ANOTHER set of data using the URL we just received from the first API
@@ -95,7 +101,6 @@ pokeApp.events = function () {
     const userSelection = document.querySelector("#difficulty").value;
 
     if (userSelection === "6") {
-      console.log("we in the 6");
       pokeApp.ulEl.style.gridTemplateColumns = "repeat(4, 1fr)";
       pokeApp.ulEl.style.gridTemplateRows = "repeat(3, 1fr)";
       // pokeApp.ulEl.style.gap = "50px";
@@ -208,8 +213,6 @@ pokeApp.checkMatch = () => {
       setTimeout(() => {
         flippedCards.forEach((card) => {
           if (!card.className.includes("matched")) {
-            console.log(pokeApp.choiceParent);
-            // pokeApp.choiceParent.style.zIndex = "10";
             card.classList.remove("flipped");
             card.parentElement.previousSibling.classList.remove("hide");
             card.parentElement.previousSibling.style.animation =
@@ -263,6 +266,7 @@ pokeApp.handleMusicClick = () => {
 
 pokeApp.init = () => {
   pokeApp.events();
+  pokeApp.randomizer();
 };
 
 pokeApp.init();

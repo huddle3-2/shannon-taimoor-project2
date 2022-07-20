@@ -19,6 +19,7 @@ pokeApp.startButton = document.querySelector(".startButton");
 pokeApp.startGameDiv = document.querySelector(".startGame");
 pokeApp.displayRounds = document.querySelector(".round");
 pokeApp.musicButton = document.querySelector("#musicButton");
+pokeApp.loader = document.querySelector(".loader");
 
 pokeApp.pokeCards = [];
 pokeApp.counter = 0;
@@ -39,6 +40,7 @@ pokeApp.fetchData = (userSelection) => {
   pokeApp.pokeCards = [];
 
   pokeNumbers.forEach((pokeNum) => {
+    pokeApp.loader.style.display = "block";
     fetch(`${url}${pokeNum}`)
       .then(function (data) {
         return data.json();
@@ -48,8 +50,9 @@ pokeApp.fetchData = (userSelection) => {
           name: result.name,
           imgUrl: result.sprites.front_default,
         });
-
-        pokeApp.createBoard(pokeApp.pokeCards);
+        setTimeout(() => {
+          pokeApp.createBoard(pokeApp.pokeCards);
+        }, 500);
       });
   });
 };
@@ -84,6 +87,7 @@ pokeApp.createBoard = function (pokeCards) {
     // call function for eventListener
     pokeApp.addClickSetup();
   });
+  pokeApp.loader.style.display = "none";
 };
 
 // trigger difficulty level event listener

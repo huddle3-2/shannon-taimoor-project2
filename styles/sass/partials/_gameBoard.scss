@@ -7,6 +7,10 @@ body {
   margin: 0;
 }
 
+header {
+  margin-top: 50px;
+}
+
 main {
   padding: 0 0 50px 0;
 }
@@ -16,7 +20,7 @@ main {
   justify-content: space-evenly;
   background-color: $blue;
   width: 80%;
-  margin:0 auto;
+  margin: 0 auto;
   color: #f8f3f8;
   border-image: url("../assets/frame.png") 42 round;
   background-clip: padding-box;
@@ -24,7 +28,6 @@ main {
   border-style: solid;
   text-shadow: -1px -1px 0 #181010, 1px -1px 0 #181010, -1px 1px 0 #181010,
     1px 1px 0 #181010;
-
 }
 
 .wrapper {
@@ -32,8 +35,8 @@ main {
   width: 50%;
   margin: 0 auto;
 
-  @media (max-width:1000px){
-    width:90%;
+  @media (max-width: 1000px) {
+    width: 90%;
   }
 }
 
@@ -42,10 +45,11 @@ main {
   flex-direction: column;
   max-width: 1280px;
   width: 80%;
-  max-height: 50vh;
-  min-height: 30vh;
+  max-height: 70vh;
+  min-height: 40vh;
   margin: 0 auto;
   align-items: center;
+  justify-content: center;
   padding: 0 0 20px;
   background-color: rgba($color: #f8f3f8, $alpha: 0.5);
   // border-radius: 40px;
@@ -54,6 +58,10 @@ main {
   border-style: solid;
   background-clip: padding-box;
   position: relative;
+
+  @media (max-width: 700px) {
+    min-height: 50vh;
+  }
 
   .displayPokemon {
     width: 60%;
@@ -121,6 +129,7 @@ main {
 
 .message {
   visibility: hidden;
+  height: 20px;
 }
 .appear {
   visibility: visible;
@@ -147,7 +156,8 @@ main {
   cursor: pointer;
   margin-top: 20px;
 
-  &:hover::before, &:focus::before {
+  &:hover::before,
+  &:focus::before {
     content: "";
     position: absolute;
     top: 0;
@@ -178,39 +188,45 @@ main {
   top: 0;
   display: flex;
   justify-content: center;
-  text-align:center;
+  text-align: center;
   align-items: center;
   flex-direction: column;
+  text-align: center;
   background-color: rgba($color: #f8f3f8, $alpha: 0);
   z-index: 200;
 
-  form{
-    display:flex;
-    flex-direction:column;
+  form {
+    display: flex;
+    flex-direction: column;
   }
-  .difficulty{
-    display:flex;
-    flex-direction:column;
-    border:none;
-    
+  .difficulty {
+    display: flex;
+    flex-direction: column;
+    border: none;
+    margin-bottom: 10px;
   }
 
-  input{
-    visibility:hidden;
+  legend {
+    font-size: 0.8rem;
+  }
 
-    &:focus + label{
-      color:red;
+  input {
+    visibility: hidden;
+
+    &:focus + label {
+      color: red;
     }
   }
 
-  input, label{
+  input,
+  label {
     cursor: pointer;
     position: relative;
   }
-  input[type=radio]:checked + label{
-    color:$blue;
+  input[type="radio"]:checked + label {
+    color: $blue;
   }
-  input[type=radio]:checked + label:before{
+  input[type="radio"]:checked + label:before {
     content: "";
     position: absolute;
     top: 0;
@@ -225,8 +241,9 @@ main {
       2em 4em 0 #181010, 3em 4em 0 #181010, 4em 4em 0 #181010, 1em 5em 0 #181010,
       2em 5em 0 #181010, 3em 5em 0 #181010, 1em 6em 0 #181010, 2em 6em 0 #181010;
   }
-  label{
-    &:hover::before, &:focus::before {
+  label {
+    &:hover::before,
+    &:focus::before {
       content: "";
       position: absolute;
       top: 0;
@@ -236,32 +253,71 @@ main {
       font-size: 2px;
       color: #181010;
       box-shadow: 1em 0em 0 #181010, 2em 0em 0 #181010, 1em 1em 0 #181010,
-        2em 1em 0 #181010, 3em 1em 0 #181010, 1em 2em 0 #181010, 2em 2em 0 #181010,
-        3em 2em 0 #181010, 4em 2em 0 #181010, 1em 3em 0 #181010, 2em 3em 0 #181010,
-        3em 3em 0 #181010, 4em 3em 0 #181010, 5em 3em 0 #181010, 1em 4em 0 #181010,
-        2em 4em 0 #181010, 3em 4em 0 #181010, 4em 4em 0 #181010, 1em 5em 0 #181010,
-        2em 5em 0 #181010, 3em 5em 0 #181010, 1em 6em 0 #181010, 2em 6em 0 #181010;
+        2em 1em 0 #181010, 3em 1em 0 #181010, 1em 2em 0 #181010,
+        2em 2em 0 #181010, 3em 2em 0 #181010, 4em 2em 0 #181010,
+        1em 3em 0 #181010, 2em 3em 0 #181010, 3em 3em 0 #181010,
+        4em 3em 0 #181010, 5em 3em 0 #181010, 1em 4em 0 #181010,
+        2em 4em 0 #181010, 3em 4em 0 #181010, 4em 4em 0 #181010,
+        1em 5em 0 #181010, 2em 5em 0 #181010, 3em 5em 0 #181010,
+        1em 6em 0 #181010, 2em 6em 0 #181010;
     }
   }
 
-  .startButton{
-    font-family:$pokemonGB;
-    border:none;
-    width:60%;
-    margin:0 auto;
-    padding:10px 20px;
-    background-color:$blue;
-    color:white;
-    transition:background-color 0.3s;
+  .startButton {
+    font-family: $pokemonGB;
+    border: none;
+    margin: 0 auto;
+    padding: 15px 30px;
+    background-color: $blue;
+    color: white;
+    transition: background-color 0.3s;
     cursor: pointer;
 
-    &:hover, &:focus{
-      background-color:rgba($color:black,$alpha:0.5);
+    &:hover,
+    &:focus {
+      background-color: rgba($color: black, $alpha: 0.5);
     }
 
-    @media (max-width:500px){
-      width:90%;
+    @media (max-width: 500px) {
+      width: 90%;
     }
+  }
+}
+
+//loader
+.loader {
+  position: relative;
+  margin-top: 100px;
+  height: 50px;
+  width: 50px;
+  background: linear-gradient(to bottom, rgb(254, 0, 1) 50%, white 50%);
+  border-radius: 50%;
+  border: 4px solid black;
+  animation: spin 1s linear infinite;
+  display: none;
+
+  &:before {
+    content: "";
+    position: absolute;
+    height: 4px;
+    width: 44px;
+    background: black;
+    top: 22px;
+    transform: translatey(-50%);
+  }
+
+  &:after {
+    content: "";
+    position: absolute;
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    background: white;
+    top: 21px;
+    left: 21px;
+    transform: translate(-50%, -50%);
+    box-shadow: inset 0 0 0 4px black, inset 0 0 0 5px white,
+      inset 0 0 0 6px black;
   }
 }
 
@@ -335,5 +391,15 @@ main {
   }
   100% {
     transform: translate(1px, -2px) rotate(-1deg);
+  }
+}
+
+//Spin animation
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
   }
 }

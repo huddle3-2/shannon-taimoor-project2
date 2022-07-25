@@ -20,11 +20,15 @@ pokeApp.startGameDiv = document.querySelector(".startGame");
 pokeApp.displayRounds = document.querySelector(".round");
 pokeApp.musicButton = document.querySelector("#musicButton");
 pokeApp.loader = document.querySelector(".loader");
+pokeApp.inputName = document.querySelector(".inputName");
 
 pokeApp.pokeCards = [];
 pokeApp.counter = 0;
 pokeApp.moves = 0;
 pokeApp.rounds = 1;
+
+pokeApp.userMoves;
+pokeApp.userSelection;
 
 // get user difficult level
 // if user difficulty level = x y z, then adjust the grid-template-column + grid-template-row
@@ -35,6 +39,9 @@ pokeApp.fetchData = (userSelection) => {
   const url = new URL("https://pokeapi.co/api/v2/pokemon/");
 
   const pokeNumbers = pokeApp.randomizer(userSelection);
+
+  pokeApp.userSelection = userSelection * 2;
+  console.log(pokeApp.userSelection);
 
   pokeApp.ulEl.innerHTML = "";
 
@@ -184,6 +191,9 @@ pokeApp.addClickSetup = () => {
 
         //adds to counter on click
         pokeApp.moves++;
+        pokeApp.userMoves = pokeApp.moves;
+        console.log(pokeApp.userMoves);
+
         // update move count
         pokeApp.displayMoves.textContent = `${pokeApp.moves}`;
 

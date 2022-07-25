@@ -43,10 +43,19 @@
           <div class="startGame">
             <h3>Gotta Match 'Em All</h3>
             <form action="">
-              <legend for="difficulty" class="difficultyLabel">
-                Select your difficulty:
-              </legend>
+              <fieldset name="userName" class="userName">
+                <label for="inputName">Enter Your Name</label>
+                <input
+                  type="text"
+                  name="inputName"
+                  id="inputName"
+                  class="inputName"
+                />
+              </fieldset>
               <fieldset name="difficulty" class="difficulty" id="difficulty">
+                <legend for="difficulty" class="difficultyLabel">
+                  Select your difficulty:
+                </legend>
                 <div class="tileSelection">
                   <input
                     class="sr-only"

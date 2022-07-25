@@ -1,7 +1,12 @@
 // Import the functions you need from the SDKs you need
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.9.1/firebase-app.js";
-import { getDatabase } from "https://www.gstatic.com/firebasejs/9.9.1/firebase-database.js";
+import {
+  getDatabase,
+  ref,
+  push,
+  get,
+} from "https://www.gstatic.com/firebasejs/9.9.1/firebase-database.js";
 
 // TODO: Add SDKs for Firebase products that you want to use
 
@@ -28,3 +33,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 const dbRef = ref(database);
+
+// essentially we want to push an obj
+// -- PLAYER NAME, HOW MANY MOVES
+// -- push this into a property key depending on which tile they selected

@@ -29,6 +29,9 @@
           <p>Round:<span class="round">1</span></p>
         </div>
         <div class="container">
+          <div class="settingsButton">
+            <img src="./assets/settings.png" alt="Settings" />
+          </div>
           <div class="loader"></div>
           <p class="message">
             <!-- Render Message -->
@@ -38,9 +41,11 @@
           </ul>
 
           <div class="btnContainer">
-            <button class="button" id="playAgain">Play Again?</button>
+            <button class="button playAgainButton" id="playAgain">
+              Play Again?
+            </button>
           </div>
-          <div class="startGame">
+          <div class="menu" id="startGame">
             <h3>Gotta Match 'Em All</h3>
             <form action="">
               <fieldset name="userName" class="userName">
@@ -101,10 +106,15 @@
               <button type="submit" class="startButton">Start Game</button>
             </form>
           </div>
+          <div class="menu settingsMenu" id="settingsMenu">
+            <button class="button">
+              Sound: <span id="soundControl">ON</span>
+            </button>
+            <button class="button musicButton" id="musicButton">
+              Music: <span id="musicControl">OFF</span>
+            </button>
+          </div>
         </div>
-        <button class="button musicButton" id="musicButton">
-          Music: <span id="audioControl">OFF</span>
-        </button>
       </div>
     </main>
     <!-- MAIN ENDS -->

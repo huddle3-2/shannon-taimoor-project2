@@ -151,10 +151,8 @@ main {
   padding-left: 15px;
   font-size: 0.8rem;
   background-color: transparent;
-  visibility: hidden;
   position: relative;
   cursor: pointer;
-  margin-top: 20px;
 
   &:hover::before,
   &:focus::before {
@@ -181,7 +179,11 @@ main {
   margin: 20px auto 0;
 }
 
-.startGame {
+.playAgainButton {
+  visibility: hidden;
+}
+
+.menu {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -192,10 +194,11 @@ main {
   align-items: center;
   flex-direction: column;
   text-align: center;
+  font-family: $pokemonGB;
   background-color: rgba($color: #f8f3f8, $alpha: 0);
   z-index: 200;
-  min-height:30vh;
-  max-height:50vh;
+  min-height: 30vh;
+  max-height: 50vh;
 
   form {
     display: flex;
@@ -279,6 +282,23 @@ main {
     @media (max-width: 500px) {
       width: 90%;
     }
+  }
+}
+
+.settingsMenu {
+  display: none;
+}
+
+.settingsButton {
+  display: none;
+  position: absolute;
+  top: 5px;
+  left: 10px;
+  width: 50px;
+  cursor: pointer;
+
+  img {
+    width: 100%;
   }
 }
 

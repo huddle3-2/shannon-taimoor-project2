@@ -18,7 +18,7 @@ pokeApp.message = document.querySelector(".message");
 pokeApp.displayMoves = document.querySelector(".moves");
 pokeApp.button = document.querySelector("#playAgain");
 pokeApp.startButton = document.querySelector(".startButton");
-pokeApp.startGameDiv = document.querySelector(".startGame");
+pokeApp.startGameDiv = document.querySelector("#startGame");
 pokeApp.displayRounds = document.querySelector(".round");
 pokeApp.musicButton = document.querySelector("#musicButton");
 pokeApp.loader = document.querySelector(".loader");
@@ -42,7 +42,6 @@ pokeApp.userSelection;
 
 // Fetch Pokemon Data using API, add url and name into an array
 pokeApp.fetchData = (userSelection) => {
-  const url = new URL("https://pokeapi.co/api/v2/pokemon/");
   const pokeNumbers = pokeApp.randomizer(userSelection);
   pokeApp.loader.style.display = "block";
 
@@ -62,7 +61,7 @@ pokeApp.fetchData = (userSelection) => {
 };
 
 pokeApp.getPokemons = async function (num) {
-  const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${num}/`);
+  const response = await fetch(`${pokeApp.apiUrl}${num}/`);
   const data = await response.json();
   return data;
 };
@@ -80,6 +79,7 @@ pokeApp.randomizer = function (userSelection) {
 // fetch ANOTHER set of data using the URL we just received from the first API
 pokeApp.createBoard = (pokeCards) => {
   pokeApp.ulEl.innerHTML = "";
+  pokeApp.settingsButton.style.display = "block";
   const dupedPokeCards = pokeApp.duplicateCards(pokeCards);
   const shuffledPokeCards = pokeApp.shufflePokeCards(dupedPokeCards);
   shuffledPokeCards.forEach((card) => {
@@ -277,7 +277,7 @@ pokeApp.handleButtonClick = () => {
 
 //Handle music button click
 pokeApp.handleMusicClick = () => {
-  const audio = document.querySelector("#audioControl");
+  const audio = document.querySelector("#musicControl");
   if (audio.textContent === "ON") {
     pokeApp.bgMusic.pause();
     audio.textContent = "OFF";
@@ -288,7 +288,9 @@ pokeApp.handleMusicClick = () => {
 };
 
 pokeApp.handleSettingsButtonClick = () => {
-  pokeApp.settingsMenu.style.display = "block";
+  pokeApp.settingsMenu.style.display = "flex";
+  pokeApp.settingsButton.style.display = "none";
+  pokeApp.ulEl.style.visibility = "hidden";
 };
 
 pokeApp.init = () => {

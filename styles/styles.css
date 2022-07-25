@@ -446,10 +446,8 @@ main {
   padding-left: 15px;
   font-size: 0.8rem;
   background-color: transparent;
-  visibility: hidden;
   position: relative;
   cursor: pointer;
-  margin-top: 20px;
 }
 .button:hover::before, .button:focus::before {
   content: "";
@@ -470,7 +468,11 @@ main {
   margin: 20px auto 0;
 }
 
-.startGame {
+.playAgainButton {
+  visibility: hidden;
+}
+
+.menu {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -490,12 +492,13 @@ main {
       -ms-flex-direction: column;
           flex-direction: column;
   text-align: center;
+  font-family: "Pokemon GB";
   background-color: rgba(248, 243, 248, 0);
   z-index: 200;
   min-height: 30vh;
   max-height: 50vh;
 }
-.startGame form {
+.menu form {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -504,7 +507,7 @@ main {
       -ms-flex-direction: column;
           flex-direction: column;
 }
-.startGame .difficulty {
+.menu .difficulty {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -515,21 +518,21 @@ main {
   border: none;
   margin-bottom: 10px;
 }
-.startGame legend {
+.menu legend {
   font-size: 0.8rem;
 }
-.startGame input[type=radio] {
+.menu input[type=radio] {
   visibility: hidden;
 }
-.startGame input,
-.startGame label {
+.menu input,
+.menu label {
   cursor: pointer;
   position: relative;
 }
-.startGame input[type=radio]:checked + label {
+.menu input[type=radio]:checked + label {
   color: #536fe1;
 }
-.startGame input[type=radio]:checked + label:before {
+.menu input[type=radio]:checked + label:before {
   content: "";
   position: absolute;
   top: 0;
@@ -540,7 +543,7 @@ main {
   -webkit-box-shadow: 1em 0em 0 #181010, 2em 0em 0 #181010, 1em 1em 0 #181010, 2em 1em 0 #181010, 3em 1em 0 #181010, 1em 2em 0 #181010, 2em 2em 0 #181010, 3em 2em 0 #181010, 4em 2em 0 #181010, 1em 3em 0 #181010, 2em 3em 0 #181010, 3em 3em 0 #181010, 4em 3em 0 #181010, 5em 3em 0 #181010, 1em 4em 0 #181010, 2em 4em 0 #181010, 3em 4em 0 #181010, 4em 4em 0 #181010, 1em 5em 0 #181010, 2em 5em 0 #181010, 3em 5em 0 #181010, 1em 6em 0 #181010, 2em 6em 0 #181010;
           box-shadow: 1em 0em 0 #181010, 2em 0em 0 #181010, 1em 1em 0 #181010, 2em 1em 0 #181010, 3em 1em 0 #181010, 1em 2em 0 #181010, 2em 2em 0 #181010, 3em 2em 0 #181010, 4em 2em 0 #181010, 1em 3em 0 #181010, 2em 3em 0 #181010, 3em 3em 0 #181010, 4em 3em 0 #181010, 5em 3em 0 #181010, 1em 4em 0 #181010, 2em 4em 0 #181010, 3em 4em 0 #181010, 4em 4em 0 #181010, 1em 5em 0 #181010, 2em 5em 0 #181010, 3em 5em 0 #181010, 1em 6em 0 #181010, 2em 6em 0 #181010;
 }
-.startGame label:hover::before, .startGame label:focus::before {
+.menu label:hover::before, .menu label:focus::before {
   content: "";
   position: absolute;
   top: 0;
@@ -552,7 +555,7 @@ main {
   -webkit-box-shadow: 1em 0em 0 #181010, 2em 0em 0 #181010, 1em 1em 0 #181010, 2em 1em 0 #181010, 3em 1em 0 #181010, 1em 2em 0 #181010, 2em 2em 0 #181010, 3em 2em 0 #181010, 4em 2em 0 #181010, 1em 3em 0 #181010, 2em 3em 0 #181010, 3em 3em 0 #181010, 4em 3em 0 #181010, 5em 3em 0 #181010, 1em 4em 0 #181010, 2em 4em 0 #181010, 3em 4em 0 #181010, 4em 4em 0 #181010, 1em 5em 0 #181010, 2em 5em 0 #181010, 3em 5em 0 #181010, 1em 6em 0 #181010, 2em 6em 0 #181010;
           box-shadow: 1em 0em 0 #181010, 2em 0em 0 #181010, 1em 1em 0 #181010, 2em 1em 0 #181010, 3em 1em 0 #181010, 1em 2em 0 #181010, 2em 2em 0 #181010, 3em 2em 0 #181010, 4em 2em 0 #181010, 1em 3em 0 #181010, 2em 3em 0 #181010, 3em 3em 0 #181010, 4em 3em 0 #181010, 5em 3em 0 #181010, 1em 4em 0 #181010, 2em 4em 0 #181010, 3em 4em 0 #181010, 4em 4em 0 #181010, 1em 5em 0 #181010, 2em 5em 0 #181010, 3em 5em 0 #181010, 1em 6em 0 #181010, 2em 6em 0 #181010;
 }
-.startGame .startButton {
+.menu .startButton {
   font-family: "Pokemon GB";
   border: none;
   margin: 0 auto;
@@ -563,13 +566,29 @@ main {
   transition: background-color 0.3s;
   cursor: pointer;
 }
-.startGame .startButton:hover, .startGame .startButton:focus {
+.menu .startButton:hover, .menu .startButton:focus {
   background-color: rgba(0, 0, 0, 0.5);
 }
 @media (max-width: 500px) {
-  .startGame .startButton {
+  .menu .startButton {
     width: 90%;
   }
+}
+
+.settingsMenu {
+  display: none;
+}
+
+.settingsButton {
+  display: none;
+  position: absolute;
+  top: 5px;
+  left: 10px;
+  width: 50px;
+  cursor: pointer;
+}
+.settingsButton img {
+  width: 100%;
 }
 
 .loader {

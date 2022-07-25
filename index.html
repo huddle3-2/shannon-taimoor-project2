@@ -29,9 +29,6 @@
           <p>Round:<span class="round">1</span></p>
         </div>
         <div class="container">
-          <div class="settingsButton">
-            <img src="./assets/settings.png" alt="Settings" />
-          </div>
           <div class="loader"></div>
           <p class="message">
             <!-- Render Message -->
@@ -70,7 +67,7 @@
                     name="tiles"
                     checked
                   />
-                  <label for="5">10 tiles</label>
+                  <label tabindex="0" for="5">10 tiles</label>
                 </div>
                 <div class="tileSelection">
                   <input
@@ -80,7 +77,7 @@
                     id="6"
                     name="tiles"
                   />
-                  <label for="6">12 tiles</label>
+                  <label tabindex="0" for="6">12 tiles</label>
                 </div>
                 <div class="tileSelection">
                   <input
@@ -90,7 +87,7 @@
                     id="8"
                     name="tiles"
                   />
-                  <label for="8">16 tiles</label>
+                  <label tabindex="0" for="8">16 tiles</label>
                 </div>
                 <div class="tileSelection">
                   <input
@@ -100,11 +97,14 @@
                     id="10"
                     name="tiles"
                   />
-                  <label for="10">20 tiles</label>
+                  <label tabindex="0" for="10">20 tiles</label>
                 </div>
               </fieldset>
               <button type="submit" class="startButton">Start Game</button>
             </form>
+          </div>
+          <div class="settingsButton" tabindex="0">
+            <img src="./assets/settings.png" alt="Settings" />
           </div>
           <div class="menu settingsMenu" id="settingsMenu">
             <button class="button closeButton" id="closeButton">X</button>

@@ -89,6 +89,7 @@ pokeApp.createBoard = (pokeCards) => {
   const shuffledPokeCards = pokeApp.shufflePokeCards(dupedPokeCards);
   shuffledPokeCards.forEach((card) => {
     pokeApp.newLi = document.createElement("li");
+    pokeApp.newLi.setAttribute("tabindex", 0);
     pokeApp.backDiv = document.createElement("div");
     pokeApp.frontDiv = document.createElement("div");
 
@@ -107,30 +108,9 @@ pokeApp.createBoard = (pokeCards) => {
 
 // trigger difficulty level event listener
 pokeApp.events = function () {
-  document.querySelector("form").addEventListener("submit", function (e) {
-    e.preventDefault();
-    const userSelection = document.querySelector(
-      "input[name=tiles]:checked"
-    ).value;
-
-    if (userSelection === "6") {
-      pokeApp.ulEl.style.gridTemplateColumns = "repeat(4, 1fr)";
-      pokeApp.ulEl.style.gridTemplateRows = "repeat(3, 1fr)";
-      // pokeApp.ulEl.style.gap = "50px";
-    } else if (userSelection === "8") {
-      pokeApp.ulEl.style.gridTemplateColumns = "repeat(4, 1fr)";
-      pokeApp.ulEl.style.gridTemplateRows = "repeat(4, 1fr)";
-    } else if (userSelection === "10") {
-      pokeApp.ulEl.style.gridTemplateColumns = "repeat(5, 1fr)";
-      pokeApp.ulEl.style.gridTemplateRows = "repeat(4, 1fr)";
-    } else if (userSelection === "5") {
-      pokeApp.ulEl.style.gridTemplateColumns = "repeat(5, 1fr)";
-      pokeApp.ulEl.style.gridTemplateRows = "repeat(2, 1fr)";
-    }
-
-    pokeApp.fetchData(userSelection);
-    pokeApp.startGameDiv.style.display = "none";
-  });
+  document
+    .querySelector("form")
+    .addEventListener("submit", pokeApp.handleStartGameButton);
   //add listener for audio
   pokeApp.musicButton.addEventListener("click", pokeApp.handleMusicClick);
   //add listener for settings button
@@ -174,6 +154,7 @@ pokeApp.duplicateCards = (array) => {
   console.log(newArray);
   return newArray;
 };
+
 // setup Event Listener
 pokeApp.addClickSetup = () => {
   pokeApp.button.addEventListener("click", pokeApp.handleButtonClick);
@@ -193,12 +174,6 @@ pokeApp.addClickSetup = () => {
         pokeApp.choiceParent.style.animation = "";
         pokeApp.choiceParent.classList.add("hide");
         pokeApp.choiceParent.style.zIndex = "0";
-
-        // setTimeout(() => {
-        //   pokeApp.choiceParent.classList.add("hide");
-        //   pokeApp.choiceParent.style.zIndex = "0";
-        // }, 500);
-
         pokeApp.choice.classList.add("flipped");
 
         //adds to counter on click
@@ -266,8 +241,8 @@ pokeApp.checkGame = () => {
   }
 };
 
-//Handle Play Again button click
-pokeApp.handleButtonClick = () => {
+//reset function
+pokeApp.reset = () => {
   pokeApp.ulEl.innerHTML = "";
   pokeApp.pokeCards = [];
   pokeApp.pokeInfo = [];
@@ -276,9 +251,40 @@ pokeApp.handleButtonClick = () => {
   pokeApp.message.classList.remove("appear");
   pokeApp.button.style.visibility = "hidden";
   pokeApp.displayMoves.textContent = "0";
-  pokeApp.startGameDiv.style.display = "flex";
-  pokeApp.rounds++;
   pokeApp.displayRounds.textContent = pokeApp.rounds;
+};
+
+//Handle Start game button
+pokeApp.handleStartGameButton = (e) => {
+  e.preventDefault();
+  const userSelection = document.querySelector(
+    "input[name=tiles]:checked"
+  ).value;
+
+  if (userSelection === "6") {
+    pokeApp.ulEl.style.gridTemplateColumns = "repeat(4, 1fr)";
+    pokeApp.ulEl.style.gridTemplateRows = "repeat(3, 1fr)";
+    // pokeApp.ulEl.style.gap = "50px";
+  } else if (userSelection === "8") {
+    pokeApp.ulEl.style.gridTemplateColumns = "repeat(4, 1fr)";
+    pokeApp.ulEl.style.gridTemplateRows = "repeat(4, 1fr)";
+  } else if (userSelection === "10") {
+    pokeApp.ulEl.style.gridTemplateColumns = "repeat(5, 1fr)";
+    pokeApp.ulEl.style.gridTemplateRows = "repeat(4, 1fr)";
+  } else {
+    pokeApp.ulEl.style.gridTemplateColumns = "repeat(5, 1fr)";
+    pokeApp.ulEl.style.gridTemplateRows = "repeat(2, 1fr)";
+  }
+
+  pokeApp.fetchData(userSelection);
+  pokeApp.startGameDiv.style.display = "none";
+};
+
+//Handle Play Again button click
+pokeApp.handleButtonClick = () => {
+  pokeApp.rounds++;
+  pokeApp.reset();
+  pokeApp.startGameDiv.style.display = "flex";
 };
 
 //Handle music button click
@@ -334,16 +340,8 @@ pokeApp.handleCloseButtonClick = () => {
 };
 
 pokeApp.handleMainMenuClick = () => {
-  pokeApp.ulEl.innerHTML = "";
-  pokeApp.pokeCards = [];
-  pokeApp.pokeInfo = [];
-  pokeApp.counter = 0;
-  pokeApp.moves = 0;
-  pokeApp.message.classList.remove("appear");
-  pokeApp.button.style.visibility = "hidden";
-  pokeApp.displayMoves.textContent = "0";
+  pokeApp.reset();
   pokeApp.startGameDiv.style.display = "flex";
-  pokeApp.displayRounds.textContent = pokeApp.rounds;
   pokeApp.settingsMenu.style.display = "none";
   pokeApp.ulEl.style.visibility = "visible";
   pokeApp.startGameDiv.style.visibility = "visible";

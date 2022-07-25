@@ -34,6 +34,21 @@ const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 const dbRef = ref(database);
 
+export default function storeInfo(tile, playerName, playerMoves) {
+  console.log(tile, playerName, playerMoves);
+
+  const userObj = {
+    tile: {
+      name: playerName,
+      numberOfMoves: playerMoves,
+    },
+  };
+
+  console.log(userObj);
+  const firebaseObj = push(dbRef, userObj);
+  console.log(firebaseObj);
+}
+
 // essentially we want to push an obj
 // -- PLAYER NAME, HOW MANY MOVES
 // -- push this into a property key depending on which tile they selected

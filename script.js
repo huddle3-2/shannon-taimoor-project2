@@ -1,3 +1,5 @@
+import storeInfo from "./database.js";
+
 const pokeApp = {};
 
 //Background Audio Setup
@@ -39,9 +41,10 @@ pokeApp.fetchData = (userSelection) => {
   const url = new URL("https://pokeapi.co/api/v2/pokemon/");
 
   const pokeNumbers = pokeApp.randomizer(userSelection);
+  // console.log(pokeApp.inputName.value);
 
   pokeApp.userSelection = userSelection * 2;
-  console.log(pokeApp.userSelection);
+  // console.log(pokeApp.userSelection);
 
   pokeApp.ulEl.innerHTML = "";
 
@@ -192,7 +195,6 @@ pokeApp.addClickSetup = () => {
         //adds to counter on click
         pokeApp.moves++;
         pokeApp.userMoves = pokeApp.moves;
-        console.log(pokeApp.userMoves);
 
         // update move count
         pokeApp.displayMoves.textContent = `${pokeApp.moves}`;
@@ -251,6 +253,12 @@ pokeApp.checkGame = () => {
     pokeApp.message.textContent = "You win the game!";
     pokeApp.message.classList.add("appear");
     pokeApp.button.style.visibility = "visible";
+    storeInfo(
+      pokeApp.userSelection,
+      pokeApp.inputName.value,
+      pokeApp.userMoves
+    );
+    pokeApp.inputName.value = "";
   }
 };
 

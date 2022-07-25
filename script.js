@@ -25,6 +25,9 @@ pokeApp.loader = document.querySelector(".loader");
 pokeApp.inputName = document.querySelector(".inputName");
 pokeApp.settingsButton = document.querySelector(".settingsButton");
 pokeApp.settingsMenu = document.querySelector("#settingsMenu");
+pokeApp.soundButton = document.querySelector("#soundButton");
+pokeApp.mainMenu = document.querySelector("#mainMenu");
+pokeApp.closeButton = document.querySelector("#closeButton");
 
 pokeApp.pokeCards = [];
 pokeApp.pokeInfo = [];
@@ -44,17 +47,6 @@ pokeApp.userName;
 // Fetch Pokemon Data using API, add url and name into an array
 pokeApp.fetchData = (userSelection) => {
   const pokeNumbers = pokeApp.randomizer(userSelection);
-<<<<<<< HEAD
-  pokeApp.userName = pokeApp.inputName.value;
-  pokeApp.inputName.value = "";
-
-  pokeApp.userSelection = userSelection * 2;
-  // console.log(pokeApp.userSelection);
-
-  pokeApp.ulEl.innerHTML = "";
-
-=======
->>>>>>> 03b0c0bde470144b4018f919e0c79dca7ea02e7d
   pokeApp.loader.style.display = "block";
 
   pokeNumbers.forEach((num) => {
@@ -145,6 +137,10 @@ pokeApp.events = function () {
     "click",
     pokeApp.handleSettingsButtonClick
   );
+  //add event listener for sound button
+  pokeApp.soundButton.addEventListener("click", pokeApp.handleSoundButtonClick);
+  //add event listener for button close
+  pokeApp.closeButton.addEventListener("click", pokeApp.handleCloseButtonClick);
 };
 
 //shuffle fetched data
@@ -298,6 +294,29 @@ pokeApp.handleSettingsButtonClick = () => {
   pokeApp.settingsMenu.style.display = "flex";
   pokeApp.settingsButton.style.display = "none";
   pokeApp.ulEl.style.visibility = "hidden";
+};
+
+pokeApp.handleSoundButtonClick = () => {
+  const sound = document.querySelector("#soundControl");
+  if (sound.textContent === "ON") {
+    pokeApp.bgMusic.volume = 0;
+    pokeApp.flipSound.volume = 0;
+    pokeApp.matchSound.volume = 0;
+    pokeApp.winGame.volume = 0;
+    sound.textContent = "OFF";
+  } else {
+    pokeApp.bgMusic.volume = 0.3;
+    pokeApp.flipSound.volume = 0.3;
+    pokeApp.matchSound.volume = 0.3;
+    pokeApp.winGame.volume = 0.3;
+    sound.textContent = "ON";
+  }
+};
+
+pokeApp.handleCloseButtonClick = () => {
+  pokeApp.settingsMenu.style.display = "none";
+  pokeApp.settingsButton.style.display = "block";
+  pokeApp.ulEl.style.visibility = "visible";
 };
 
 pokeApp.init = () => {

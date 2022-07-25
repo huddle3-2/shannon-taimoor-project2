@@ -19,6 +19,7 @@ pokeApp.startButton = document.querySelector(".startButton");
 pokeApp.startGameDiv = document.querySelector(".startGame");
 pokeApp.displayRounds = document.querySelector(".round");
 pokeApp.musicButton = document.querySelector("#musicButton");
+pokeApp.loader = document.querySelector(".loader");
 
 pokeApp.pokeCards = [];
 pokeApp.counter = 0;
@@ -36,23 +37,32 @@ pokeApp.fetchData = (userSelection) => {
   const pokeNumbers = pokeApp.randomizer(userSelection);
 
   pokeApp.ulEl.innerHTML = "";
-  pokeApp.pokeCards = [];
 
-  pokeNumbers.forEach((pokeNum) => {
-    fetch(`${url}${pokeNum}`)
-      .then(function (data) {
-        return data.json();
-      })
-      .then(function (result) {
-        pokeApp.pokeCards.push({
-          name: result.name,
-          imgUrl: result.sprites.front_default,
-        });
+  pokeApp.loader.style.display = "block";
 
-        pokeApp.createBoard(pokeApp.pokeCards);
+  pokeNumbers.forEach((num) => {
+    pokeApp.pokeCards.push(pokeApp.getPokemons(num));
+  });
+
+  Promise.all(pokeApp.pokeCards).then((pokemons) => {
+    pokemons.forEach((pokemon) => {
+      pokeApp.pokeInfo.push({
+        name: pokemon.name,
+        imgUrl: pokemon.sprites.front_default,
       });
+    });
+    pokeApp.createBoard(pokeApp.pokeInfo);
   });
 };
+
+pokeApp.getPokemons = async function (num) {
+  const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${num}/`);
+  const data = await response.json();
+  return data;
+};
+
+pokeApp.pokeCards = [];
+pokeApp.pokeInfo = [];
 
 pokeApp.randomizer = function (userSelection) {
   const newArray = [];
@@ -65,11 +75,11 @@ pokeApp.randomizer = function (userSelection) {
 };
 
 // fetch ANOTHER set of data using the URL we just received from the first API
-pokeApp.createBoard = function (pokeCards) {
+pokeApp.createBoard = (pokeCards) => {
   pokeApp.ulEl.innerHTML = "";
-  pokeCards = pokeApp.duplicateCards(pokeCards);
-  pokeCards = pokeApp.shufflePokeCards(pokeCards);
-  pokeCards.forEach((card) => {
+  const dupedPokeCards = pokeApp.duplicateCards(pokeCards);
+  const shuffledPokeCards = pokeApp.shufflePokeCards(dupedPokeCards);
+  shuffledPokeCards.forEach((card) => {
     pokeApp.newLi = document.createElement("li");
     pokeApp.backDiv = document.createElement("div");
     pokeApp.frontDiv = document.createElement("div");
@@ -84,6 +94,7 @@ pokeApp.createBoard = function (pokeCards) {
     // call function for eventListener
     pokeApp.addClickSetup();
   });
+  pokeApp.loader.style.display = "none";
 };
 
 // trigger difficulty level event listener
@@ -94,7 +105,6 @@ pokeApp.events = function () {
       "input[name=tiles]:checked"
     ).value;
 
-    console.log(userSelection);
     if (userSelection === "6") {
       pokeApp.ulEl.style.gridTemplateColumns = "repeat(4, 1fr)";
       pokeApp.ulEl.style.gridTemplateRows = "repeat(3, 1fr)";
@@ -142,6 +152,7 @@ pokeApp.duplicateCards = (array) => {
     newArray.push(card);
   });
   //assign newArray to pokeCards array
+  console.log(newArray);
   return newArray;
 };
 // setup Event Listener
@@ -262,7 +273,6 @@ pokeApp.handleMusicClick = () => {
 
 pokeApp.init = () => {
   pokeApp.events();
-  pokeApp.randomizer();
 };
 
 pokeApp.init();

@@ -179,6 +179,7 @@ main {
 }
 
 .playAgainButton {
+  margin-top: 20px;
   visibility: hidden;
 }
 
@@ -197,7 +198,7 @@ main {
   background-color: rgba($color: #f8f3f8, $alpha: 0);
   z-index: 200;
   min-height: 30vh;
-  max-height: 50vh;
+  max-height: 60vh;
 
   form {
     display: flex;
@@ -289,12 +290,12 @@ main {
 }
 
 .settingsButton {
-  display: none;
   position: absolute;
-  top: 5px;
-  left: 10px;
+  bottom: 5px;
+  right: 10px;
   width: 30px;
   cursor: pointer;
+  z-index: 300;
 
   img {
     width: 100%;

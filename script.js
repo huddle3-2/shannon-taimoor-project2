@@ -85,7 +85,6 @@ pokeApp.randomizer = function (userSelection) {
 // fetch ANOTHER set of data using the URL we just received from the first API
 pokeApp.createBoard = (pokeCards) => {
   pokeApp.ulEl.innerHTML = "";
-  pokeApp.settingsButton.style.display = "block";
   const dupedPokeCards = pokeApp.duplicateCards(pokeCards);
   const shuffledPokeCards = pokeApp.shufflePokeCards(dupedPokeCards);
   shuffledPokeCards.forEach((card) => {
@@ -298,7 +297,10 @@ pokeApp.handleMusicClick = () => {
 pokeApp.handleSettingsButtonClick = () => {
   pokeApp.settingsMenu.style.display = "flex";
   pokeApp.settingsButton.style.display = "none";
+  pokeApp.startGameDiv.style.visibility = "hidden";
   pokeApp.ulEl.style.visibility = "hidden";
+  pokeApp.button.style.visibility = "hidden";
+  pokeApp.message.classList.remove("appear");
 };
 
 pokeApp.handleSoundButtonClick = () => {
@@ -320,6 +322,15 @@ pokeApp.handleCloseButtonClick = () => {
   pokeApp.settingsMenu.style.display = "none";
   pokeApp.settingsButton.style.display = "block";
   pokeApp.ulEl.style.visibility = "visible";
+  pokeApp.startGameDiv.style.visibility = "visible";
+  if (
+    document.querySelector("li") &&
+    document.querySelectorAll(".matched").length ===
+      pokeApp.pokeCards.length * 2
+  ) {
+    pokeApp.message.classList.add("appear");
+    pokeApp.button.style.visibility = "visible";
+  }
 };
 
 pokeApp.handleMainMenuClick = () => {
@@ -335,6 +346,8 @@ pokeApp.handleMainMenuClick = () => {
   pokeApp.displayRounds.textContent = pokeApp.rounds;
   pokeApp.settingsMenu.style.display = "none";
   pokeApp.ulEl.style.visibility = "visible";
+  pokeApp.startGameDiv.style.visibility = "visible";
+  pokeApp.settingsButton.style.display = "block";
 };
 
 pokeApp.init = () => {

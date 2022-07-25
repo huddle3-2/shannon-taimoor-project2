@@ -467,6 +467,7 @@ main {
 }
 
 .playAgainButton {
+  margin-top: 20px;
   visibility: hidden;
 }
 
@@ -494,7 +495,7 @@ main {
   background-color: rgba(248, 243, 248, 0);
   z-index: 200;
   min-height: 30vh;
-  max-height: 50vh;
+  max-height: 60vh;
 }
 .menu form {
   display: -webkit-box;
@@ -578,12 +579,12 @@ main {
 }
 
 .settingsButton {
-  display: none;
   position: absolute;
-  top: 5px;
-  left: 10px;
+  bottom: 5px;
+  right: 10px;
   width: 30px;
   cursor: pointer;
+  z-index: 300;
 }
 .settingsButton img {
   width: 100%;

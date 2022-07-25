@@ -31,6 +31,7 @@ pokeApp.rounds = 1;
 
 pokeApp.userMoves;
 pokeApp.userSelection;
+pokeApp.userName;
 
 // get user difficult level
 // if user difficulty level = x y z, then adjust the grid-template-column + grid-template-row
@@ -41,7 +42,8 @@ pokeApp.fetchData = (userSelection) => {
   const url = new URL("https://pokeapi.co/api/v2/pokemon/");
 
   const pokeNumbers = pokeApp.randomizer(userSelection);
-  // console.log(pokeApp.inputName.value);
+  pokeApp.userName = pokeApp.inputName.value;
+  pokeApp.inputName.value = "";
 
   pokeApp.userSelection = userSelection * 2;
   // console.log(pokeApp.userSelection);
@@ -253,12 +255,7 @@ pokeApp.checkGame = () => {
     pokeApp.message.textContent = "You win the game!";
     pokeApp.message.classList.add("appear");
     pokeApp.button.style.visibility = "visible";
-    storeInfo(
-      pokeApp.userSelection,
-      pokeApp.inputName.value,
-      pokeApp.userMoves
-    );
-    pokeApp.inputName.value = "";
+    storeInfo(pokeApp.userSelection, pokeApp.userName, pokeApp.userMoves);
   }
 };
 

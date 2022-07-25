@@ -23,11 +23,15 @@ pokeApp.displayRounds = document.querySelector(".round");
 pokeApp.musicButton = document.querySelector("#musicButton");
 pokeApp.loader = document.querySelector(".loader");
 pokeApp.inputName = document.querySelector(".inputName");
+pokeApp.settingsButton = document.querySelector(".settingsButton");
+pokeApp.settingsMenu = document.querySelector("#settingsMenu");
 
 pokeApp.pokeCards = [];
+pokeApp.pokeInfo = [];
 pokeApp.counter = 0;
 pokeApp.moves = 0;
 pokeApp.rounds = 1;
+pokeApp.apiUrl = new URL("https://pokeapi.co/api/v2/pokemon/");
 
 pokeApp.userMoves;
 pokeApp.userSelection;
@@ -40,8 +44,8 @@ pokeApp.userName;
 // Fetch Pokemon Data using API, add url and name into an array
 pokeApp.fetchData = (userSelection) => {
   const url = new URL("https://pokeapi.co/api/v2/pokemon/");
-
   const pokeNumbers = pokeApp.randomizer(userSelection);
+<<<<<<< HEAD
   pokeApp.userName = pokeApp.inputName.value;
   pokeApp.inputName.value = "";
 
@@ -50,6 +54,8 @@ pokeApp.fetchData = (userSelection) => {
 
   pokeApp.ulEl.innerHTML = "";
 
+=======
+>>>>>>> 03b0c0bde470144b4018f919e0c79dca7ea02e7d
   pokeApp.loader.style.display = "block";
 
   pokeNumbers.forEach((num) => {
@@ -72,9 +78,6 @@ pokeApp.getPokemons = async function (num) {
   const data = await response.json();
   return data;
 };
-
-pokeApp.pokeCards = [];
-pokeApp.pokeInfo = [];
 
 pokeApp.randomizer = function (userSelection) {
   const newArray = [];
@@ -137,6 +140,11 @@ pokeApp.events = function () {
   });
   //add listener for audio
   pokeApp.musicButton.addEventListener("click", pokeApp.handleMusicClick);
+  //add listener for settings button
+  pokeApp.settingsButton.addEventListener(
+    "click",
+    pokeApp.handleSettingsButtonClick
+  );
 };
 
 //shuffle fetched data
@@ -263,13 +271,13 @@ pokeApp.checkGame = () => {
 pokeApp.handleButtonClick = () => {
   pokeApp.ulEl.innerHTML = "";
   pokeApp.pokeCards = [];
+  pokeApp.pokeInfo = [];
   pokeApp.counter = 0;
   pokeApp.moves = 0;
   pokeApp.message.classList.remove("appear");
   pokeApp.button.style.visibility = "hidden";
   pokeApp.displayMoves.textContent = "0";
   pokeApp.startGameDiv.style.display = "flex";
-  // pokeApp.fetchData();
   pokeApp.rounds++;
   pokeApp.displayRounds.textContent = pokeApp.rounds;
 };
@@ -284,6 +292,10 @@ pokeApp.handleMusicClick = () => {
     pokeApp.bgMusic.play();
     audio.textContent = "ON";
   }
+};
+
+pokeApp.handleSettingsButtonClick = () => {
+  pokeApp.settingsMenu.style.display = "block";
 };
 
 pokeApp.init = () => {

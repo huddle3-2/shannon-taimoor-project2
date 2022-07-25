@@ -75,7 +75,9 @@ pokeApp.randomizer = function (userSelection) {
 
   for (let i = 0; i < userSelection; i++) {
     const randomNum = Math.floor(Math.random() * 898);
-    newArray.push(randomNum);
+    if (!newArray.includes(randomNum)) {
+      newArray.push(randomNum);
+    }
   }
   return newArray;
 };

@@ -288,6 +288,7 @@ pokeApp.handleMusicClick = () => {
     audio.textContent = "OFF";
   } else {
     pokeApp.bgMusic.play();
+    pokeApp.bgMusic.volume = 0.3;
     audio.textContent = "ON";
   }
 };
@@ -301,16 +302,14 @@ pokeApp.handleSettingsButtonClick = () => {
 pokeApp.handleSoundButtonClick = () => {
   const sound = document.querySelector("#soundControl");
   if (sound.textContent === "ON") {
-    pokeApp.bgMusic.volume = 0;
     pokeApp.flipSound.volume = 0;
     pokeApp.matchSound.volume = 0;
     pokeApp.winGame.volume = 0;
     sound.textContent = "OFF";
   } else {
-    pokeApp.bgMusic.volume = 0.3;
-    pokeApp.flipSound.volume = 0.3;
     pokeApp.matchSound.volume = 0.3;
     pokeApp.winGame.volume = 0.3;
+    pokeApp.flipSound.volume = 0.3;
     sound.textContent = "ON";
   }
 };

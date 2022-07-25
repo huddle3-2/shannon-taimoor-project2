@@ -35,6 +35,7 @@ pokeApp.apiUrl = new URL("https://pokeapi.co/api/v2/pokemon/");
 
 pokeApp.userMoves;
 pokeApp.userSelection;
+pokeApp.userName;
 
 // get user difficult level
 // if user difficulty level = x y z, then adjust the grid-template-column + grid-template-row
@@ -43,6 +44,17 @@ pokeApp.userSelection;
 // Fetch Pokemon Data using API, add url and name into an array
 pokeApp.fetchData = (userSelection) => {
   const pokeNumbers = pokeApp.randomizer(userSelection);
+<<<<<<< HEAD
+  pokeApp.userName = pokeApp.inputName.value;
+  pokeApp.inputName.value = "";
+
+  pokeApp.userSelection = userSelection * 2;
+  // console.log(pokeApp.userSelection);
+
+  pokeApp.ulEl.innerHTML = "";
+
+=======
+>>>>>>> 03b0c0bde470144b4018f919e0c79dca7ea02e7d
   pokeApp.loader.style.display = "block";
 
   pokeNumbers.forEach((num) => {
@@ -251,12 +263,7 @@ pokeApp.checkGame = () => {
     pokeApp.message.textContent = "You win the game!";
     pokeApp.message.classList.add("appear");
     pokeApp.button.style.visibility = "visible";
-    storeInfo(
-      pokeApp.userSelection,
-      pokeApp.inputName.value,
-      pokeApp.userMoves
-    );
-    pokeApp.inputName.value = "";
+    storeInfo(pokeApp.userSelection, pokeApp.userName, pokeApp.userMoves);
   }
 };
 

@@ -37,17 +37,22 @@ const dbRef = ref(database);
 export default function storeInfo(tile, playerName, playerMoves) {
   console.log(tile, playerName, playerMoves);
 
-  const userObj = {
-    tile: {
-      name: playerName,
-      numberOfMoves: playerMoves,
-    },
-  };
+  const userObj = { tile: tile, name: playerName, moves: playerMoves };
 
-  console.log(userObj);
   const firebaseObj = push(dbRef, userObj);
-  console.log(firebaseObj);
+
+  getInfo();
 }
+
+const getInfo = function () {
+  get(dbRef).then((response) => {
+    if (response.exists()) {
+      console.log(response.val());
+    } else {
+      console.log("no data");
+    }
+  });
+};
 
 // essentially we want to push an obj
 // -- PLAYER NAME, HOW MANY MOVES

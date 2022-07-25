@@ -141,6 +141,8 @@ pokeApp.events = function () {
   pokeApp.soundButton.addEventListener("click", pokeApp.handleSoundButtonClick);
   //add event listener for button close
   pokeApp.closeButton.addEventListener("click", pokeApp.handleCloseButtonClick);
+  //add event listener for main menu
+  pokeApp.mainMenu.addEventListener("click", pokeApp.handleMainMenuClick);
 };
 
 //shuffle fetched data
@@ -316,6 +318,21 @@ pokeApp.handleSoundButtonClick = () => {
 pokeApp.handleCloseButtonClick = () => {
   pokeApp.settingsMenu.style.display = "none";
   pokeApp.settingsButton.style.display = "block";
+  pokeApp.ulEl.style.visibility = "visible";
+};
+
+pokeApp.handleMainMenuClick = () => {
+  pokeApp.ulEl.innerHTML = "";
+  pokeApp.pokeCards = [];
+  pokeApp.pokeInfo = [];
+  pokeApp.counter = 0;
+  pokeApp.moves = 0;
+  pokeApp.message.classList.remove("appear");
+  pokeApp.button.style.visibility = "hidden";
+  pokeApp.displayMoves.textContent = "0";
+  pokeApp.startGameDiv.style.display = "flex";
+  pokeApp.displayRounds.textContent = pokeApp.rounds;
+  pokeApp.settingsMenu.style.display = "none";
   pokeApp.ulEl.style.visibility = "visible";
 };
 

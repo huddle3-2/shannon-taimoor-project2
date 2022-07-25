@@ -153,6 +153,11 @@ main {
   background-color: transparent;
   position: relative;
   cursor: pointer;
+  text-align: left;
+
+  &:not(:first-child) {
+    margin-bottom: 10px;
+  }
 
   &:hover::before,
   &:focus::before {
@@ -171,12 +176,6 @@ main {
       2em 4em 0 #181010, 3em 4em 0 #181010, 4em 4em 0 #181010, 1em 5em 0 #181010,
       2em 5em 0 #181010, 3em 5em 0 #181010, 1em 6em 0 #181010, 2em 6em 0 #181010;
   }
-}
-
-.musicButton {
-  visibility: visible;
-  display: block;
-  margin: 20px auto 0;
 }
 
 .playAgainButton {

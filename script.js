@@ -167,35 +167,7 @@ pokeApp.duplicateCards = (array) => {
 // setup Event Listener
 pokeApp.addClickSetup = () => {
   pokeApp.button.addEventListener("click", pokeApp.handleButtonClick);
-  pokeApp.newLi.addEventListener("click", function (e) {
-    //check if target has class of front
-    if (e.target.parentNode.className.includes("front")) {
-      pokeApp.counter++;
-
-      if (pokeApp.counter <= 2) {
-        pokeApp.flipSound.load();
-        pokeApp.flipSound.play();
-        // put target parent into variable and add class of flipped
-        pokeApp.choiceParent = e.target.parentNode;
-        pokeApp.choice = e.target.parentNode.nextSibling.firstChild;
-
-        // pokeApp.choiceParent.style.animation = "flip 0.5s linear 10s";
-        pokeApp.choiceParent.style.animation = "";
-        pokeApp.choiceParent.classList.add("hide");
-        pokeApp.choiceParent.style.zIndex = "0";
-        pokeApp.choice.classList.add("flipped");
-
-        //adds to counter on click
-        pokeApp.moves++;
-        pokeApp.userMoves = pokeApp.moves;
-
-        // update move count
-        pokeApp.displayMoves.textContent = `${pokeApp.moves}`;
-
-        pokeApp.checkMatch();
-      }
-    }
-  });
+  pokeApp.newLi.addEventListener("click", pokeApp.handleTileClick);
 };
 
 //Check match
@@ -265,6 +237,35 @@ pokeApp.reset = () => {
 };
 
 //Handlers
+//Pokeball tile click handler
+pokeApp.handleTileClick = (e) => {
+  if (e.target.parentNode.className.includes("front")) {
+    pokeApp.counter++;
+
+    if (pokeApp.counter <= 2) {
+      pokeApp.flipSound.load();
+      pokeApp.flipSound.play();
+      // put target parent into variable and add class of flipped
+      pokeApp.choiceParent = e.target.parentNode;
+      pokeApp.choice = e.target.parentNode.nextSibling.firstChild;
+
+      // pokeApp.choiceParent.style.animation = "flip 0.5s linear 10s";
+      pokeApp.choiceParent.style.animation = "";
+      pokeApp.choiceParent.classList.add("hide");
+      pokeApp.choiceParent.style.zIndex = "0";
+      pokeApp.choice.classList.add("flipped");
+
+      //adds to counter on click
+      pokeApp.moves++;
+      pokeApp.userMoves = pokeApp.moves;
+
+      // update move count
+      pokeApp.displayMoves.textContent = `${pokeApp.moves}`;
+
+      pokeApp.checkMatch();
+    }
+  }
+};
 //Handle Start game button
 pokeApp.handleStartGameButton = (e) => {
   e.preventDefault();

@@ -53,33 +53,32 @@ pokeApp.fetchData = (userSelection) => {
     pokeApp.pokeCards.push(pokeApp.getPokemons(num));
   });
 
-  Promise.all(pokeApp.pokeCards).then((pokemons) => {
-    pokemons.forEach((pokemon) => {
-      pokeApp.pokeInfo.push({
-        name: pokemon.name,
-        imgUrl: pokemon.sprites.front_default,
+  Promise.all(pokeApp.pokeCards)
+    .then((pokemons) => {
+      pokemons.forEach((pokemon) => {
+        pokeApp.pokeInfo.push({
+          name: pokemon.name,
+          imgUrl: pokemon.sprites.front_default,
+        });
       });
+      pokeApp.createBoard(pokeApp.pokeInfo);
+    })
+    .catch((err) => {
+      alert(
+        `${err.message} -- something went wrong while fetching the pokemon. Please try again.`
+      );
+      location.reload();
     });
-    pokeApp.createBoard(pokeApp.pokeInfo);
-  });
 };
 
 pokeApp.getPokemons = async function (num) {
   const response = await fetch(`${pokeApp.apiUrl}${num}/`);
-  const data = await response.json();
-  return data;
-};
-
-pokeApp.randomizer = function (userSelection) {
-  const newArray = [];
-
-  for (let i = 0; i < userSelection; i++) {
-    const randomNum = Math.floor(Math.random() * 898);
-    if (!newArray.includes(randomNum)) {
-      newArray.push(randomNum);
-    }
+  if (response.ok) {
+    const data = await response.json();
+    return data;
+  } else {
+    throw new Error(res.statusText);
   }
-  return newArray;
 };
 
 // fetch ANOTHER set of data using the URL we just received from the first API
@@ -126,6 +125,7 @@ pokeApp.events = function () {
   pokeApp.mainMenu.addEventListener("click", pokeApp.handleMainMenuClick);
 };
 
+//Utility methods
 //shuffle fetched data
 pokeApp.shufflePokeCards = (array) => {
   const copyArray = [...array];
@@ -140,6 +140,19 @@ pokeApp.shufflePokeCards = (array) => {
     ];
   }
   return copyArray;
+};
+
+//returns an array of random numbers based on user selection
+pokeApp.randomizer = function (userSelection) {
+  const newArray = [];
+
+  for (let i = 0; i < userSelection; i++) {
+    const randomNum = Math.floor(Math.random() * 898);
+    if (!newArray.includes(randomNum)) {
+      newArray.push(randomNum);
+    }
+  }
+  return newArray;
 };
 
 //duplicate pokeCards array
@@ -254,6 +267,7 @@ pokeApp.reset = () => {
   pokeApp.displayRounds.textContent = pokeApp.rounds;
 };
 
+//Handlers
 //Handle Start game button
 pokeApp.handleStartGameButton = (e) => {
   e.preventDefault();

@@ -239,7 +239,7 @@ h1 {
   text-align: center;
   font-size: 1.6rem;
 }
-@media (max-width: 500px) {
+@media (max-width: 660px) {
   h1 {
     font-size: 1.2rem;
   }
@@ -287,7 +287,7 @@ body {
 }
 
 header {
-  margin-top: 50px;
+  margin-top: 30px;
 }
 
 main {
@@ -302,7 +302,6 @@ main {
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
   background-color: #536fe1;
-  width: 90%;
   margin: 0 auto;
   color: #f8f3f8;
   -o-border-image: url("../assets/frame.png") 42 round;
@@ -315,10 +314,20 @@ main {
 
 .wrapper {
   max-width: 1280px;
-  width: 50%;
+  width: 30%;
   margin: 0 auto;
 }
 @media (max-width: 1000px) {
+  .wrapper {
+    width: 50%;
+  }
+}
+@media (max-width: 760px) {
+  .wrapper {
+    width: 60%;
+  }
+}
+@media (max-width: 500px) {
   .wrapper {
     width: 90%;
   }
@@ -333,9 +342,8 @@ main {
       -ms-flex-direction: column;
           flex-direction: column;
   max-width: 1280px;
-  width: 90%;
   max-height: 70vh;
-  min-height: 40vh;
+  min-height: 400px;
   margin: 0 auto;
   -webkit-box-align: center;
       -ms-flex-align: center;
@@ -585,8 +593,8 @@ main {
 
 .settingsButton {
   position: absolute;
-  bottom: 5px;
-  right: 10px;
+  top: 5px;
+  right: 5px;
   width: 30px;
   cursor: pointer;
   z-index: 300;

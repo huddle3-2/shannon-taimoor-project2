@@ -234,6 +234,17 @@ template {
   font-family: "Pokemon GB";
 }
 
+h1 {
+  font-family: "Pokemon GB";
+  text-align: center;
+  font-size: 1.6rem;
+}
+@media (max-width: 500px) {
+  h1 {
+    font-size: 1.2rem;
+  }
+}
+
 h2 {
   font-family: "Pokemon GB";
   font-size: 1rem;
@@ -259,15 +270,10 @@ h3 {
 }
 
 @media (max-width: 500px) {
-  .difficultyLabel, .tileSelection {
+  .difficultyLabel,
+.tileSelection {
     font-size: 0.8rem;
   }
-}
-
-h1 {
-  font-family: "Pokemon GB";
-  text-align: center;
-  font-size: 1.6rem;
 }
 
 body {
@@ -277,6 +283,7 @@ body {
   background-position: center;
   background-attachment: fixed;
   margin: 0;
+  min-width: 400px;
 }
 
 header {
@@ -295,7 +302,7 @@ main {
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
   background-color: #536fe1;
-  width: 80%;
+  width: 90%;
   margin: 0 auto;
   color: #f8f3f8;
   -o-border-image: url("../assets/frame.png") 42 round;
@@ -326,7 +333,7 @@ main {
       -ms-flex-direction: column;
           flex-direction: column;
   max-width: 1280px;
-  width: 80%;
+  width: 90%;
   max-height: 70vh;
   min-height: 40vh;
   margin: 0 auto;
@@ -347,7 +354,12 @@ main {
 }
 @media (max-width: 700px) {
   .container {
-    min-height: 50vh;
+    min-height: 400px;
+  }
+}
+@media (max-width: 500px) {
+  .container {
+    max-height: none;
   }
 }
 .container .displayPokemon {
@@ -388,11 +400,6 @@ main {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-}
-@media (max-height: 600px) {
-  .container .displayPokemon .back img {
-    height: 70px;
-  }
 }
 .container .displayPokemon .front {
   position: relative;
@@ -494,8 +501,6 @@ main {
   font-family: "Pokemon GB";
   background-color: rgba(248, 243, 248, 0);
   z-index: 200;
-  min-height: 30vh;
-  max-height: 60vh;
 }
 .menu form {
   display: -webkit-box;
@@ -814,6 +819,10 @@ footer {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -822,11 +831,17 @@ footer {
       -ms-flex-pack: center;
           justify-content: center;
   bottom: 0;
+  z-index: 400;
+}
+footer .wrapper {
+  padding: 10px 0;
 }
 footer p {
   font-family: "Poppins", sans-serif;
   color: white;
   font-weight: bold;
   margin: 0;
-  padding: 10px 0;
+}
+footer p:not(:last-child) {
+  margin-bottom: 5px;
 }

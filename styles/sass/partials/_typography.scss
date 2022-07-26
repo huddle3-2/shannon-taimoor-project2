@@ -4,8 +4,18 @@
   font-weight: normal;
 }
 
-.startGame{
+.startGame {
   font-family: $pokemonGB;
+}
+
+h1 {
+  font-family: $pokemonGB;
+  text-align: center;
+  font-size: 1.6rem;
+
+  @media (max-width: 500px) {
+    font-size: 1.2rem;
+  }
 }
 
 h2 {
@@ -15,22 +25,22 @@ h2 {
 
 p {
   font-family: $pokemonGB;
-  @media (max-width:500px){
-    font-size:0.8rem;
-    margin:10px;
+  @media (max-width: 500px) {
+    font-size: 0.8rem;
+    margin: 10px;
   }
 }
 
-h3{
+h3 {
   font-family: $pokemonGB;
-  @media (max-width:500px){
-    font-size:0.8rem;
+  @media (max-width: 500px) {
+    font-size: 0.8rem;
   }
 }
 
-.difficultyLabel, .tileSelection{
-  @media (max-width:500px){
-    font-size:0.8rem;
+.difficultyLabel,
+.tileSelection {
+  @media (max-width: 500px) {
+    font-size: 0.8rem;
   }
 }
-

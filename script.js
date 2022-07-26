@@ -105,7 +105,7 @@ pokeApp.createBoard = (pokeCards) => {
   pokeApp.loader.style.display = "none";
 };
 
-// trigger difficulty level event listener
+// add event listeners
 pokeApp.events = function () {
   document
     .querySelector("form")
@@ -313,7 +313,7 @@ pokeApp.handleMusicClick = () => {
     audio.textContent = "ON";
   }
 };
-
+//handle setting button click
 pokeApp.handleSettingsButtonClick = () => {
   pokeApp.settingsMenu.style.display = "flex";
   pokeApp.settingsButton.style.display = "none";
@@ -323,6 +323,7 @@ pokeApp.handleSettingsButtonClick = () => {
   pokeApp.message.classList.remove("appear");
 };
 
+//handle sound on/off
 pokeApp.handleSoundButtonClick = () => {
   const sound = document.querySelector("#soundControl");
   if (sound.textContent === "ON") {
@@ -338,6 +339,7 @@ pokeApp.handleSoundButtonClick = () => {
   }
 };
 
+//handle menu close button
 pokeApp.handleCloseButtonClick = () => {
   pokeApp.settingsMenu.style.display = "none";
   pokeApp.settingsButton.style.display = "block";

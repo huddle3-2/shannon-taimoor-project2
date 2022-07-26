@@ -45,7 +45,7 @@
           <div class="menu" id="startGame">
             <h3>Gotta Match 'Em All!</h3>
             <form action="">
-              <fieldset name="userName" class="userName">
+              <!-- <fieldset name="userName" class="userName">
                 <label for="inputName">Enter Your Name</label>
                 <input
                   type="text"
@@ -53,8 +53,13 @@
                   id="inputName"
                   class="inputName"
                 />
-              </fieldset>
-              <fieldset name="difficulty" class="difficulty" id="difficulty">
+              </fieldset> -->
+              <fieldset
+                name="difficulty"
+                class="difficulty"
+                id="difficulty"
+                role="radiogroup"
+              >
                 <legend for="difficulty" class="difficultyLabel">
                   Select your difficulty:
                 </legend>
@@ -65,7 +70,7 @@
                     value="1"
                     id="5"
                     name="tiles"
-                    checked
+                    aria-checked="true"
                   />
                   <label tabindex="0" for="5">10 tiles</label>
                 </div>
@@ -76,6 +81,7 @@
                     value="6"
                     id="6"
                     name="tiles"
+                    aria-checked="false"
                   />
                   <label tabindex="0" for="6">12 tiles</label>
                 </div>
@@ -86,16 +92,19 @@
                     value="8"
                     id="8"
                     name="tiles"
+                    aria-checked="false"
                   />
                   <label tabindex="0" for="8">16 tiles</label>
                 </div>
                 <div class="tileSelection">
                   <input
+                    role="button"
                     class="sr-only"
                     type="radio"
                     value="10"
                     id="10"
                     name="tiles"
+                    aria-checked="false"
                   />
                   <label tabindex="0" for="10">20 tiles</label>
                 </div>
@@ -122,7 +131,10 @@
     <!-- MAIN ENDS -->
     <!-- FOOTER STARTS -->
     <footer>
-      <p>Created at Juno College 2022</p>
+      <div class="wrapper">
+        <p>Created at Juno College 2022</p>
+        <p>Powered by PokeAPI</p>
+      </div>
     </footer>
     <!-- FOOTER ENDS -->
     <script type="module" src="script.js"></script>

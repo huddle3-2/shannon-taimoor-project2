@@ -5,6 +5,7 @@ body {
   background-position: center;
   background-attachment: fixed;
   margin: 0;
+  min-width: 400px;
 }
 
 header {
@@ -19,7 +20,7 @@ main {
   display: flex;
   justify-content: space-evenly;
   background-color: $blue;
-  width: 80%;
+  width: 90%;
   margin: 0 auto;
   color: #f8f3f8;
   border-image: url("../assets/frame.png") 42 round;
@@ -44,7 +45,7 @@ main {
   display: flex;
   flex-direction: column;
   max-width: 1280px;
-  width: 80%;
+  width: 90%;
   max-height: 70vh;
   min-height: 40vh;
   margin: 0 auto;
@@ -60,7 +61,11 @@ main {
   position: relative;
 
   @media (max-width: 700px) {
-    min-height: 50vh;
+    min-height: 400px;
+  }
+
+  @media (max-width: 500px) {
+    max-height: none;
   }
 
   .displayPokemon {
@@ -100,9 +105,9 @@ main {
         justify-content: center;
         align-items: center;
 
-        @media (max-height: 600px) {
-          height: 70px;
-        }
+        // @media (max-height: 600px) {
+        //   height: 70px;
+        // }
       }
     }
 
@@ -197,8 +202,6 @@ main {
   font-family: $pokemonGB;
   background-color: rgba($color: #f8f3f8, $alpha: 0);
   z-index: 200;
-  min-height: 30vh;
-  max-height: 60vh;
 
   form {
     display: flex;

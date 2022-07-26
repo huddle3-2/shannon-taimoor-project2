@@ -241,6 +241,7 @@ pokeApp.checkMatch = () => {
 pokeApp.checkGame = () => {
   const matchedCards = document.querySelectorAll(".matched");
 
+  // checking if conditions are met that the number of matched cards is equal to the number of cards that were generated
   if (matchedCards.length === pokeApp.pokeCards.length * 2) {
     pokeApp.winGame.play();
     pokeApp.message.textContent = "You win the game!";

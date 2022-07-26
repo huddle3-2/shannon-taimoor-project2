@@ -1,4 +1,4 @@
-import storeInfo from "./database.js";
+// import storeInfo from "./database.js";
 
 const pokeApp = {};
 
@@ -36,13 +36,10 @@ pokeApp.moves = 0;
 pokeApp.rounds = 1;
 pokeApp.apiUrl = new URL("https://pokeapi.co/api/v2/pokemon/");
 
-pokeApp.userMoves;
-pokeApp.userSelection;
-pokeApp.userName;
-
-// get user difficult level
-// if user difficulty level = x y z, then adjust the grid-template-column + grid-template-row
-// also have to fetch number in the array and display in the grid
+// These will be for future implementation of database :)
+// pokeApp.userMoves;
+// pokeApp.userSelection;
+// pokeApp.userName;
 
 // Fetch Pokemon Data using API, add url and name into an array
 pokeApp.fetchData = (userSelection) => {
@@ -164,7 +161,6 @@ pokeApp.duplicateCards = (array) => {
     newArray.push(card);
   });
   //assign newArray to pokeCards array
-  console.log(newArray);
   return newArray;
 };
 
